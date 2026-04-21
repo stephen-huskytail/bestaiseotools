@@ -9,6 +9,7 @@ export const reviews: Review[] = [
     slug: 'frase-review',
     toolId: 'tool-frase',
     authorId: 'author-1',
+    featuredImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=675&fit=crop',
     excerpt: 'After 6 months using Frase daily, here is my honest review covering research, optimization, AI writing, and whether it is worth the price.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*
 
@@ -147,6 +148,7 @@ The main limitation is volume—4 articles/month on the Starter plan is restrict
     slug: 'koala-ai-review',
     toolId: 'tool-koala',
     authorId: 'author-1',
+    featuredImage: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=1200&h=675&fit=crop',
     excerpt: 'Koala AI generates full SEO articles for just $9/month. After producing 50+ articles with it, here is my honest assessment.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*
 
@@ -341,6 +343,7 @@ It is not a replacement for human expertise—every article needs editing. But a
     slug: 'surfer-seo-review',
     toolId: 'tool-surfer',
     authorId: 'author-1',
+    featuredImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop',
     excerpt: 'An in-depth look at Surfer SEO, the AI-powered content optimization platform that promises to help you rank higher.',
     body: `## What is Surfer SEO?
 
@@ -380,6 +383,7 @@ Surfer SEO is an excellent tool for content creators who want data-driven guidan
     slug: 'ahrefs-review',
     toolId: 'tool-ahrefs',
     authorId: 'author-1',
+    featuredImage: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=675&fit=crop',
     excerpt: 'We dive deep into Ahrefs to see if it lives up to its reputation as the gold standard for SEO professionals.',
     body: `## Overview
 
@@ -419,6 +423,7 @@ If you're serious about SEO, Ahrefs is worth every penny. The data accuracy and 
     slug: 'jasper-ai-review',
     toolId: 'tool-jasper',
     authorId: 'author-1',
+    featuredImage: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&h=675&fit=crop',
     excerpt: 'After using Jasper AI daily for 4 months, here is my honest review covering content generation, brand voice, team features, and whether it is worth $39-59/month.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*
 
@@ -555,6 +560,7 @@ It is not a replacement for human writers—you still need editing and fact-chec
     slug: 'clearscope-review',
     toolId: 'tool-clearscope',
     authorId: 'author-1',
+    featuredImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop',
     excerpt: 'After using Clearscope for 8 months across multiple content teams, here is my honest assessment of whether the $129+/month price tag is justified.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*
 
@@ -733,6 +739,7 @@ For solo creators, Surfer SEO or Frase deliver 80%+ of the value at 40-50% of th
     slug: 'semrush-review',
     toolId: 'tool-semrush',
     authorId: 'author-1',
+    featuredImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=675&fit=crop',
     excerpt: 'After 2 years using Semrush daily, here is my comprehensive review covering keyword research, site audits, competitive analysis, and whether it replaces multiple tools.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*
 
@@ -946,6 +953,7 @@ At $119/month (Pro) or $229/month (Guru), it is expensive. But if you currently 
     slug: 'neuronwriter-review',
     toolId: 'tool-neuronwriter',
     authorId: 'author-1',
+    featuredImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=675&fit=crop',
     excerpt: 'At $23/month, NeuronWriter is the cheapest serious content optimization tool. After 4 months of testing, here is whether the savings come with tradeoffs.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*
 

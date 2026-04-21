@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
 import { getAllComparisons } from '../../content'
 
@@ -31,6 +32,19 @@ export default async function ComparisonsPage() {
                 key={comparison.id}
                 className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-lg md:flex-row"
               >
+                {comparison.featuredImage && (
+                  <Link href={`/comparisons/${comparison.slug}`} className="block md:w-72 shrink-0">
+                    <div className="relative aspect-[16/9] md:h-full overflow-hidden">
+                      <Image
+                        src={comparison.featuredImage}
+                        alt={comparison.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 288px"
+                      />
+                    </div>
+                  </Link>
+                )}
                 <div className="flex flex-1 flex-col p-6">
                   <Link href={`/comparisons/${comparison.slug}`}>
                     <h2 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600">

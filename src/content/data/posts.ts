@@ -10,6 +10,7 @@ export const posts: Post[] = [
     slug: 'best-ai-seo-tools',
     authorId: 'author-1',
     categoryId: 'cat-ai-writing',
+    featuredImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop',
     excerpt: 'After testing 40+ AI SEO tools, here are the 12 that actually deliver results. Includes real pricing, honest pros/cons, and which tool fits your specific needs.',
     body: `*Disclosure: This post contains affiliate links. If you purchase through these links, we may earn a commission at no extra cost to you.*
 
@@ -294,6 +295,7 @@ Don't chase features—chase results. A $23/month tool used well beats a $300/mo
     slug: 'ai-seo-tools-guide-2024',
     authorId: 'author-1',
     categoryId: 'cat-ai-writing',
+    featuredImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop',
     excerpt: 'Everything you need to know about using AI for SEO, from content creation to optimization.',
     body: `## Introduction
 
@@ -333,6 +335,7 @@ AI SEO tools are powerful allies in your marketing toolkit. Start with one tool 
     slug: 'keyword-research-guide-2024',
     authorId: 'author-1',
     categoryId: 'cat-keyword-research',
+    featuredImage: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&h=675&fit=crop',
     excerpt: 'Learn how to find profitable keywords that drive traffic and conversions.',
     body: `## Why Keyword Research Matters
 
@@ -373,6 +376,7 @@ Keyword research takes time, but it's worth the investment. Good keyword researc
     slug: 'best-content-optimization-tools',
     authorId: 'author-1',
     categoryId: 'cat-content-optimization',
+    featuredImage: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=675&fit=crop',
     excerpt: 'Content optimization tools help you create articles that rank. After testing 15+ tools, here are the 8 that actually improve search rankings.',
     body: `*Disclosure: This post contains affiliate links. If you purchase through these links, we may earn a commission at no extra cost to you.*
 
@@ -554,6 +558,7 @@ On a tight budget? Start with **NeuronWriter** at $23/month. Need maximum resear
     slug: 'best-local-seo-tools',
     authorId: 'author-1',
     categoryId: 'cat-local-seo',
+    featuredImage: 'https://images.unsplash.com/photo-1553484771-371a605b060b?w=1200&h=675&fit=crop',
     excerpt: 'Local SEO requires different tools than traditional SEO. Here are the best AI-powered tools for local search, Google Business Profile, and citation management.',
     body: `*Disclosure: This post contains affiliate links. If you purchase through these links, we may earn a commission at no extra cost to you.*
 
@@ -720,6 +725,7 @@ Pair it with **LocalFalcon** ($24/month) for detailed rank tracking and **Gather
     slug: 'google-business-profile-tools',
     authorId: 'author-1',
     categoryId: 'cat-local-seo',
+    featuredImage: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=1200&h=675&fit=crop',
     excerpt: 'Your Google Business Profile is the most important asset for local search. These tools help you optimize, manage, and monitor your GBP for maximum visibility.',
     body: `*Disclosure: This post contains affiliate links. If you purchase through these links, we may earn a commission at no extra cost to you.*
 

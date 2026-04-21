@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
 import { getReviewBySlug, getAllReviews } from '../../../content'
 import { AffiliateButton, RatingStars } from '../../../components'
@@ -28,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: review.title,
       description: review.excerpt,
       type: 'article',
+      images: review.featuredImage ? [{ url: review.featuredImage }] : undefined,
     },
   }
 }
@@ -108,7 +110,22 @@ export default async function ReviewPage({ params }: Props) {
           </div>
         </header>
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        {review.featuredImage && (
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
+              <Image
+                src={review.featuredImage}
+                alt={review.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1280px"
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-3">
             <article className="lg:col-span-2">
               {review.body && (

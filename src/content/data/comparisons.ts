@@ -8,6 +8,7 @@ export const comparisons: Comparison[] = [
     title: 'Surfer SEO vs Clearscope 2026: Which Content Optimizer Wins?',
     slug: 'surfer-seo-vs-clearscope',
     toolIds: ['tool-surfer', 'tool-clearscope'],
+    featuredImage: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=675&fit=crop',
     excerpt: 'A head-to-head comparison of two premium content optimization tools. We break down features, pricing, and results to help you decide.',
     body: `*Disclosure: This post contains affiliate links. We may earn a commission at no extra cost to you.*
 
@@ -194,6 +195,7 @@ Clearscope remains excellent for enterprise teams where unlimited users and clea
     title: 'NeuronWriter vs Frase 2026: Best Budget Content Optimizer?',
     slug: 'neuronwriter-vs-frase',
     toolIds: ['tool-neuronwriter', 'tool-frase'],
+    featuredImage: 'https://images.unsplash.com/photo-1553484771-371a605b060b?w=1200&h=675&fit=crop',
     excerpt: 'Comparing the two best affordable content optimization tools. Which delivers better value under $50/month?',
     body: `*Disclosure: This post contains affiliate links. We may earn a commission at no extra cost to you.*
 
@@ -414,6 +416,7 @@ If you optimize 10+ articles monthly, NeuronWriter's credit system is more gener
     title: 'Ahrefs vs Semrush 2026: The Definitive SEO Tool Comparison',
     slug: 'ahrefs-vs-semrush',
     toolIds: ['tool-ahrefs', 'tool-semrush'],
+    featuredImage: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=1200&h=675&fit=crop',
     excerpt: 'The two biggest names in SEO tools go head-to-head. After years of using both, here is the definitive comparison to help you choose.',
     body: `*Disclosure: This post contains affiliate links. We may earn a commission at no extra cost to you.*
 
@@ -734,6 +737,7 @@ The breadth of features—content tools, PPC analysis, social tracking—makes i
     title: 'Surfer SEO vs Jasper AI: Content Optimization vs Content Generation',
     slug: 'surfer-seo-vs-jasper-ai',
     toolIds: ['tool-surfer', 'tool-jasper'],
+    featuredImage: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=675&fit=crop',
     excerpt: 'Comparing two different approaches to AI-powered content creation. Which one should you use?',
     body: `## Overview
 

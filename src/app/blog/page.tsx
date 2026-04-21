@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
 import { getAllPosts } from '../../content'
 
@@ -31,6 +32,19 @@ export default async function BlogPage() {
                 key={post.id}
                 className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-lg"
               >
+                {post.featuredImage && (
+                  <Link href={`/blog/${post.slug}`} className="block">
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={post.featuredImage}
+                        alt={post.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  </Link>
+                )}
                 <div className="p-6">
                   {post.category && (
                     <Link

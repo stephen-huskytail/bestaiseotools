@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -35,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description: post.excerpt,
       type: 'article',
+      images: post.featuredImage ? [{ url: post.featuredImage }] : undefined,
     },
   }
 }
@@ -119,7 +121,22 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </header>
 
-        <article className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+        {post.featuredImage && (
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
+              <Image
+                src={post.featuredImage}
+                alt={post.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 896px"
+              />
+            </div>
+          </div>
+        )}
+
+        <article className="mx-auto max-w-4xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
           {post.body && (
             <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
 import { getAllReviews } from '../../content'
 import { RatingStars } from '../../components'
@@ -32,6 +33,19 @@ export default async function ReviewsPage() {
                 key={review.id}
                 className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-lg"
               >
+                {review.featuredImage && (
+                  <Link href={`/reviews/${review.slug}`} className="block">
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={review.featuredImage}
+                        alt={review.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  </Link>
+                )}
                 <div className="p-6">
                   {review.tool && (
                     <div className="mb-3 flex items-center gap-2">
