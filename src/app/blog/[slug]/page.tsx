@@ -2,9 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { getPostBySlug, getAllPosts, getRelatedPosts } from '../../../content'
+import { markdownToHtml } from '../../../lib/markdown'
 import {
   FAQAccordion,
   AffiliateButton,
@@ -50,13 +49,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-function generateHeadingId(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-}
-
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = getPostBySlug(slug)
@@ -70,6 +62,7 @@ export default async function BlogPostPage({ params }: Props) {
   const readingTime = calculateReadingTime(post.body || '')
   const tocItems = extractTocFromMarkdown(post.body || '')
   const relatedPosts = getRelatedPosts(slug, 3)
+  const bodyHtml = post.body ? await markdownToHtml(post.body) : ''
 
   const articleJsonLd = generateArticleJsonLd({
     headline: post.title,
@@ -187,28 +180,11 @@ export default async function BlogPostPage({ params }: Props) {
           )}
 
           <article>
-            {post.body && (
-              <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    h2: ({ children }) => {
-                      const text = String(children)
-                      return <h2 id={generateHeadingId(text)}>{children}</h2>
-                    },
-                    h3: ({ children }) => {
-                      const text = String(children)
-                      return <h3 id={generateHeadingId(text)}>{children}</h3>
-                    },
-                    h4: ({ children }) => {
-                      const text = String(children)
-                      return <h4 id={generateHeadingId(text)}>{children}</h4>
-                    },
-                  }}
-                >
-                  {post.body}
-                </ReactMarkdown>
-              </div>
+            {bodyHtml && (
+              <div
+                className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
+                dangerouslySetInnerHTML={{ __html: bodyHtml }}
+              />
             )}
 
             {post.faq && post.faq.length > 0 && (

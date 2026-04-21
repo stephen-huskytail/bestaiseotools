@@ -2,9 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { getReviewBySlug, getAllReviews, getRelatedReviews } from '../../../content'
+import { markdownToHtml } from '../../../lib/markdown'
 import { AffiliateButton, RatingStars, AuthorBio, ShareButtons, TableOfContents, RelatedReviews } from '../../../components'
 import { JsonLd, generateReviewJsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
@@ -51,6 +50,7 @@ export default async function ReviewPage({ params }: Props) {
   const readingTime = calculateReadingTime(review.body || '')
   const tocItems = extractTocFromMarkdown(review.body || '')
   const relatedReviews = getRelatedReviews(slug, 3)
+  const bodyHtml = review.body ? await markdownToHtml(review.body) : ''
 
   const reviewJsonLd = generateReviewJsonLd({
     name: review.title,
@@ -165,31 +165,11 @@ export default async function ReviewPage({ params }: Props) {
                 </div>
               )}
 
-              {review.body && (
-                <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      h2: ({ children }) => {
-                        const text = String(children)
-                        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-                        return <h2 id={id}>{children}</h2>
-                      },
-                      h3: ({ children }) => {
-                        const text = String(children)
-                        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-                        return <h3 id={id}>{children}</h3>
-                      },
-                      h4: ({ children }) => {
-                        const text = String(children)
-                        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-                        return <h4 id={id}>{children}</h4>
-                      },
-                    }}
-                  >
-                    {review.body}
-                  </ReactMarkdown>
-                </div>
+              {bodyHtml && (
+                <div
+                  className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
+                  dangerouslySetInnerHTML={{ __html: bodyHtml }}
+                />
               )}
 
               {review.verdict && (

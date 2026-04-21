@@ -2,9 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { getComparisonBySlug, getAllComparisons, getRelatedComparisons } from '../../../content'
+import { markdownToHtml } from '../../../lib/markdown'
 import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons, TableOfContents, RelatedComparisons } from '../../../components'
 import { JsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
@@ -51,6 +50,7 @@ export default async function ComparisonPage({ params }: Props) {
   const readingTime = calculateReadingTime(comparison.body || '')
   const tocItems = extractTocFromMarkdown(comparison.body || '')
   const relatedComparisons = getRelatedComparisons(slug, 3)
+  const bodyHtml = comparison.body ? await markdownToHtml(comparison.body) : ''
 
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },
@@ -190,31 +190,11 @@ export default async function ComparisonPage({ params }: Props) {
             </div>
           )}
 
-          {comparison.body && (
-            <article className="prose prose-lg mx-auto max-w-4xl prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                components={{
-                  h2: ({ children }) => {
-                    const text = String(children)
-                    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-                    return <h2 id={id}>{children}</h2>
-                  },
-                  h3: ({ children }) => {
-                    const text = String(children)
-                    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-                    return <h3 id={id}>{children}</h3>
-                  },
-                  h4: ({ children }) => {
-                    const text = String(children)
-                    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-                    return <h4 id={id}>{children}</h4>
-                  },
-                }}
-              >
-                {comparison.body}
-              </ReactMarkdown>
-            </article>
+          {bodyHtml && (
+            <article
+              className="prose prose-lg mx-auto max-w-4xl prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
+              dangerouslySetInnerHTML={{ __html: bodyHtml }}
+            />
           )}
 
           {comparison.author && (
