@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Best AI SEO Tools - Discover the Top AI-Powered SEO Tools",
+  title: "Smart SEO Tools - Discover the Top AI-Powered SEO Tools",
   description:
     "Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.",
 };

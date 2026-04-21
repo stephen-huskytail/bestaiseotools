@@ -5,7 +5,7 @@ import { getAllPosts } from '../../content'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Blog - Best AI SEO Tools',
+  title: 'Blog - Smart SEO Tools',
   description: 'Tips, guides, and insights about AI-powered SEO tools and strategies.',
 }
 

@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!comparison) return {}
 
   return {
-    title: `${comparison.title} - Best AI SEO Tools`,
+    title: `${comparison.title} - Smart SEO Tools`,
     description: comparison.excerpt,
     openGraph: {
       title: comparison.title,

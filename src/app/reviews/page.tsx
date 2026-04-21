@@ -6,7 +6,7 @@ import { RatingStars } from '../../components'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Tool Reviews - Best AI SEO Tools',
+  title: 'Tool Reviews - Smart SEO Tools',
   description: 'In-depth reviews of the best AI SEO tools to help you make informed decisions.',
 }
 

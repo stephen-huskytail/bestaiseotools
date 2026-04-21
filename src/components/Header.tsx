@@ -7,7 +7,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <span className="text-xl font-bold text-gray-900">
-              Best AI SEO Tools
+              Smart SEO Tools
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-8">

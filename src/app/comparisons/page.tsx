@@ -5,7 +5,7 @@ import { getAllComparisons } from '../../content'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Tool Comparisons - Best AI SEO Tools',
+  title: 'Tool Comparisons - Smart SEO Tools',
   description: 'Side-by-side comparisons of popular AI SEO tools to help you choose the best option.',
 }
 

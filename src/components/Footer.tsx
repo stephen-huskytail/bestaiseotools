@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="col-span-1 md:col-span-2">
             <span className="text-lg font-bold text-gray-900">
-              Best AI SEO Tools
+              Smart SEO Tools
             </span>
             <p className="mt-4 text-sm text-gray-600">
               Your trusted source for discovering and comparing the best AI-powered
@@ -57,7 +57,7 @@ export function Footer() {
         </div>
         <div className="mt-8 border-t border-gray-200 pt-8">
           <p className="text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Best AI SEO Tools. All rights reserved.
+            &copy; {new Date().getFullYear()} Smart SEO Tools. All rights reserved.
           </p>
         </div>
       </div>

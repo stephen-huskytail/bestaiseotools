@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
-const SITE_NAME = 'Best AI SEO Tools'
+const SITE_NAME = 'Smart SEO Tools'
 
 interface SeoConfig {
   title: string
@@ -144,7 +144,7 @@ export function generateBlogMetadata(post: {
 }): Metadata {
   return generateMetadata({
     title: post.title,
-    description: post.excerpt || `Read about ${post.title} on Best AI SEO Tools blog.`,
+    description: post.excerpt || `Read about ${post.title} on Smart SEO Tools blog.`,
     path: `/blog/${post.slug}`,
     ogImage: post.featuredImage,
     article: {

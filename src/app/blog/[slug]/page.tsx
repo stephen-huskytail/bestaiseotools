@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {}
 
   return {
-    title: `${post.title} - Best AI SEO Tools`,
+    title: `${post.title} - Smart SEO Tools`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: Props) {
       name: post.author?.name || 'SmartSEOTools Team',
     },
     publisher: {
-      name: 'Best AI SEO Tools',
+      name: 'Smart SEO Tools',
       logo: `${siteUrl}/logo.png`,
     },
   })
