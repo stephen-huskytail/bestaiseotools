@@ -521,44 +521,354 @@ The AI SEO landscape will keep shifting. The fundamentals won't. Build on qualit
   },
   {
     id: 'post-keyword-research',
-    title: 'Keyword Research in 2026: A Step-by-Step Guide',
+    title: 'Keyword Research in 2026: The Complete 6-Step Guide for SEO Success',
     slug: 'keyword-research-guide-2026',
     authorId: 'author-3',
     categoryId: 'cat-keyword-research',
     featuredImage: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&h=675&fit=crop',
-    excerpt: 'Learn how to find profitable keywords that drive traffic and conversions.',
-    body: `## Why Keyword Research Matters
+    excerpt: 'A comprehensive 6-step keyword research process for 2026, covering seed keyword discovery, AI search optimization, search intent analysis, and building keyword clusters that rank.',
+    body: `*Disclosure: This post contains affiliate links. If you purchase through these links, we may earn a commission at no extra cost to you.*
 
-No keyword research, no SEO strategy. Simple as that. You need to know what people search for before you can rank for it.
+## Why Keyword Research Matters in 2026
 
-## Step 1: Brainstorm Seed Keywords
+No keyword research, no SEO strategy. That fundamental hasn't changed. What has changed: the search landscape now includes AI-powered answers alongside traditional results.
 
-Broad topics first. What does your business do? What problems do you solve? Those become seed keywords—starting points for deeper research.
+According to [Position Digital's research](https://www.position.digital/blog/ai-seo-statistics/), approximately 27% of consumers now use AI for roughly half of their internet searches, jumping between ChatGPT, Perplexity, Gemini, and Google's AI Overviews before making decisions.
 
-## Step 2: Expand with Tools
+This means keyword research in 2026 serves two purposes:
+1. **Traditional SEO** — Ranking in organic search results
+2. **Answer Engine Optimization (AEO)** — Getting cited in AI-generated answers
 
-Use tools like Ahrefs or Semrush to find related keywords, questions, and long-tail variations.
+As [Whitehat SEO's B2B guide](https://whitehat-seo.co.uk/blog/secrets-of-keyword-research) notes, "Search behavior, competitor positioning, and AI search patterns evolve continuously." Quarterly keyword reviews are now standard practice.
 
-## Step 3: Analyze Difficulty and Volume
+## The 6-Step Keyword Research Process
 
-Not all keywords are worth pursuing. Look for keywords with:
-- Reasonable search volume
-- Manageable difficulty
-- Clear search intent
+### Step 1: Identify Seed Keywords
 
-## Step 4: Map Keywords to Content
+Seed keywords are your starting points—broad terms that define your business, products, or content areas.
 
-Group related keywords and assign them to specific pages or content pieces.
+**How to brainstorm seeds:**
+
+**Customer perspective approach:**
+- What problems do your customers have?
+- What solutions do they search for?
+- What questions do they ask before buying?
+
+**Business perspective approach:**
+- What products or services do you offer?
+- What topics demonstrate your expertise?
+- What categories define your market?
+
+**Competitor approach:**
+- What topics do competitors cover?
+- What keywords drive their organic traffic?
+- What content gaps exist in your market?
+
+According to [Medium's beginner guide](https://medium.com/@sarthakraval/keyword-research-for-beginners-complete-step-by-step-guide-for-2026-96cb1c61c54b), "A fitness blog might initiate brainstorming with terms like 'workout,' 'diet,' or 'weight loss.' Finally, analyze competitor websites and observe their primary topics to solidify your initial keyword set."
+
+**Example seed list for an AI SEO tools site:**
+- AI SEO tools
+- Content optimization software
+- Keyword research tools
+- AI writing for SEO
+- SEO automation
+- Local SEO tools
+
+Aim for 10-20 seed keywords as starting points.
+
+### Step 2: Expand Keywords with Research Tools
+
+Seed keywords become comprehensive keyword lists through tool-assisted expansion.
+
+**Best tools for keyword expansion:**
+
+| Tool | Strength | Starting Price |
+|------|----------|----------------|
+| Ahrefs Keywords Explorer | Largest keyword database, click metrics | $129/mo |
+| Semrush Keyword Magic Tool | Best filtering and grouping interface | $139.95/mo |
+| Ubersuggest | Budget-friendly with solid data | $29/mo |
+| Google Keyword Planner | Free, direct from Google | Free |
+
+**What to extract from each seed:**
+
+- **Related keywords** — Variations and synonyms
+- **Question keywords** — What, how, why queries
+- **Long-tail variations** — More specific, lower competition
+- **Modifier keywords** — Best, cheap, reviews, vs., alternatives
+
+According to [Jigsaw Kraft's guide](https://www.jigsawkraft.com/post/how-to-do-keyword-research-step-by-step-guide-for-beginners-2026), this expansion typically generates 500-2,000 keywords from 10-20 seeds depending on your niche.
+
+**Pro tip:** Use Ahrefs' "Questions" report or AnswerThePublic to find question-based keywords that make excellent H2 headings and FAQ content.
+
+### Step 3: Analyze Key Metrics
+
+Not all keywords deserve content. Filter by metrics that matter:
+
+**Search Volume**
+Average monthly searches. Higher volume = more potential traffic, but often more competition.
+
+- **High volume (10,000+):** Major traffic potential, usually competitive
+- **Medium volume (1,000-10,000):** Good targets for established sites
+- **Low volume (100-1,000):** Easier wins, often higher conversion intent
+- **Very low (<100):** Only worth it if highly relevant or high-converting
+
+According to [Loganix's keyword tips](https://loganix.com/keyword-research-tips/), "Filter by search volume (100-5,000/month for most niches)" as a starting framework.
+
+**Keyword Difficulty (KD)**
+How hard it is to rank on page 1. Scale typically 0-100.
+
+- **KD 0-20:** Easy wins, target for new sites
+- **KD 21-40:** Moderate difficulty, achievable with quality content
+- **KD 41-60:** Challenging, requires strong content + backlinks
+- **KD 61+:** Very competitive, major authority required
+
+[Content Whale's guide](https://content-whale.com/blog/how-to-do-keyword-research-2/) recommends "keyword difficulty under 30 for new sites, under 50 for established sites."
+
+**Click Potential**
+Ahrefs' unique metric showing actual clicks vs. searches. A keyword with 10,000 searches but only 3,000 clicks (due to SERP features) is worth less than a 5,000-search keyword with 4,500 clicks.
+
+**Cost-Per-Click (CPC)**
+Indicates commercial value. High CPC keywords often convert better because advertisers pay more for them.
+
+**SERP Features**
+What appears in results? Featured snippets, video carousels, People Also Ask, Local Pack—these affect click-through rates and optimization strategy.
+
+### Step 4: Evaluate Search Intent
+
+Search intent is the reason behind a query—what the searcher actually wants. According to [SEO.com's keyword guide](https://www.seo.com/basics/on-page-seo/keyword-research/), "Getting intent wrong is the single most common reason content fails to rank, even when it targets the right keyword."
+
+**The four intent types:**
+
+**Informational Intent**
+User wants to learn something.
+- Examples: "what is keyword research," "how to find keywords," "keyword research tips"
+- Content type: Guides, tutorials, explanations, how-to articles
+- Conversion: Low immediate, builds trust
+
+**Navigational Intent**
+User wants to find a specific site or page.
+- Examples: "Ahrefs login," "Semrush pricing," "Google Search Console"
+- Content type: Brand pages, product pages
+- Conversion: Depends on brand recognition
+
+**Commercial Investigation**
+User is researching before purchasing.
+- Examples: "best keyword research tools," "Ahrefs vs Semrush," "Surfer SEO review"
+- Content type: Comparisons, reviews, best-of lists
+- Conversion: Medium-high, decision stage
+
+**Transactional Intent**
+User is ready to buy or act.
+- Examples: "buy Ahrefs subscription," "Semrush free trial," "keyword research tool pricing"
+- Content type: Product pages, pricing pages, signup flows
+- Conversion: Highest
+
+**How to identify intent:**
+
+1. **Search the keyword** — Look at what currently ranks
+2. **Analyze SERP features** — Shopping results indicate transactional, knowledge panels indicate informational
+3. **Read the content** — What format and depth do top results use?
+4. **Check the modifiers** — "How to," "what is," "best," "buy," "vs." all signal intent
+
+**Intent alignment is non-negotiable.** If top results are all how-to guides, don't publish a product page. Match what Google already rewards.
+
+### Step 5: Build Keyword Clusters
+
+Keyword clustering groups related keywords to target with single pieces of content. This prevents cannibalization and builds topical authority.
+
+**The pillar-cluster model:**
+
+- **Pillar page:** Comprehensive guide targeting primary keyword (e.g., "keyword research guide")
+- **Cluster content:** Supporting articles targeting long-tail variations (e.g., "how to find low competition keywords," "keyword research for local SEO")
+- **Internal links:** Connect cluster content to pillar and each other
+
+**Example cluster for "AI SEO tools":**
+
+**Pillar:** "Complete Guide to AI SEO Tools 2026"
+- Primary keyword: "AI SEO tools"
+- Word count: 3,000-5,000 words
+- Covers all major categories
+
+**Cluster articles:**
+- "Best AI Content Optimization Tools" (targets "AI content optimization")
+- "AI Writing Tools for SEO" (targets "AI writing SEO")
+- "AI Keyword Research Tools" (targets "AI keyword research")
+- "Surfer SEO Review" (targets "Surfer SEO review")
+- "Jasper AI vs ChatGPT for SEO" (targets comparison queries)
+
+According to [Writesonic's guide](https://writesonic.com/blog/keyword-research), clustering ensures "one cluster, one page" to avoid internal competition.
+
+**Clustering process:**
+
+1. **Export all keywords** from research
+2. **Group by parent topic** — Keywords that could be satisfied by the same content
+3. **Identify pillar opportunities** — Broad topics with multiple supporting queries
+4. **Map to content types** — Match intent to appropriate formats
+5. **Prioritize by opportunity** — Balance volume, difficulty, and business relevance
+
+### Step 6: Prioritize and Organize
+
+Not all keywords deserve equal effort. Prioritize systematically.
+
+**The ICE Framework:**
+
+- **Impact (1-10):** How much traffic or revenue could this keyword drive?
+- **Confidence (1-10):** How likely are we to rank for this?
+- **Ease (1-10):** How difficult is the content to create?
+
+**Calculate:** Impact × Confidence × Ease = Priority Score
+
+**Prioritization factors:**
+
+According to [Balistro's SEO guide](https://www.balistro.com/keyword-research-seo-guide-2026/), prioritize by:
+
+1. **Business relevance** — Does this keyword connect to revenue?
+2. **Keyword difficulty** — Can you realistically rank?
+3. **Competition gap** — Are competitors weak on this topic?
+4. **Content effort** — What resources are required?
+5. **Quick wins available** — Existing content to optimize?
+
+**Organization approach:**
+
+Create a keyword database (spreadsheet or tool) with:
+- Keyword
+- Search volume
+- Keyword difficulty
+- Intent type
+- Cluster assignment
+- Priority score
+- Target content URL
+- Status (not started, in progress, published, ranking)
+
+## Keyword Research for AI Search (AEO)
+
+According to [Image X Media's strategy guide](https://imagexmedia.com/blog/starter-guide-effective-seo-keyword-strategy), "AEO (Answer Engine Optimization) is the practice of structuring your content so AI systems can discover, understand, and cite it as an authoritative answer."
+
+**How AI search changes keyword research:**
+
+**Question optimization becomes critical**
+AI assistants answer questions. Content structured around clear questions and direct answers is more likely to be cited.
+
+**Authority signals matter more**
+AI systems prefer citing authoritative sources. E-E-A-T signals (Experience, Expertise, Authoritativeness, Trust) influence AI citation.
+
+**Conversational queries increase**
+People ask AI systems questions naturally. Long-tail, conversational keywords gain importance.
+
+**Featured snippet optimization**
+Content that wins featured snippets is often what AI systems cite. Optimize for position zero.
+
+**Practical AEO additions to keyword research:**
+
+1. **Research AI platform queries** — What questions do people ask ChatGPT about your topics?
+2. **Track AI visibility** — Tools like Semrush and Surfer now track AI citations
+3. **Structure for direct answers** — Clear questions, concise answers, supporting detail
+4. **Build topical authority** — Comprehensive coverage signals expertise to AI systems
+
+## Common Keyword Research Mistakes
+
+**Mistake 1: Ignoring search intent**
+The most common failure. Targeting "best project management software" with a single product page when all top results are comparison lists.
+
+**Solution:** Always analyze what currently ranks before creating content.
+
+**Mistake 2: Chasing volume over relevance**
+High-volume keywords that don't connect to your business waste resources.
+
+**Solution:** Prioritize keywords that drive business outcomes, not just traffic.
+
+**Mistake 3: Keyword stuffing**
+Forcing exact-match keywords unnaturally damages both rankings and readability.
+
+**Solution:** Focus on topics and natural language. Google understands synonyms and semantic relationships.
+
+**Mistake 4: Ignoring competition**
+Targeting KD 80+ keywords with a new site is a recipe for failure.
+
+**Solution:** Match keyword difficulty to your site's authority. Build up to competitive keywords.
+
+**Mistake 5: One-time research**
+Treating keyword research as a single event rather than ongoing process.
+
+**Solution:** According to [Whitehat SEO](https://whitehat-seo.co.uk/blog/secrets-of-keyword-research), "Review keyword strategy quarterly for most businesses—monthly reviews appropriate for fast-moving industries."
+
+**Mistake 6: Neglecting long-tail**
+Focusing only on high-volume head terms while ignoring easier long-tail opportunities.
+
+**Solution:** Long-tail keywords often convert better and build authority for competitive terms.
+
+## Keyword Research Tools Comparison
+
+| Tool | Best For | Volume Data | Difficulty Score | Price |
+|------|----------|-------------|------------------|-------|
+| Ahrefs | Comprehensive research | Excellent | Most accurate | $129/mo |
+| Semrush | All-in-one platform | Excellent | Good | $139.95/mo |
+| Ubersuggest | Budget option | Good | Adequate | $29/mo |
+| Moz Keyword Explorer | Beginners | Good | Good | $99/mo |
+| Google Keyword Planner | PPC focus, free | Direct from Google | None | Free |
+| AnswerThePublic | Question research | Limited | None | Free/Limited |
+| AlsoAsked | PAA research | None | None | Free/Limited |
+
+**My recommendation:** Semrush or Ahrefs for serious SEO. Ubersuggest for budget-constrained beginners. Supplement with free tools for question and PAA research.
+
+## Putting It Together: A Practical Example
+
+**Scenario:** You're launching a blog about AI writing tools.
+
+**Step 1: Seed keywords**
+- AI writing tools
+- AI content generators
+- ChatGPT alternatives
+- AI copywriting
+- AI blog writing
+
+**Step 2: Expand (using Ahrefs)**
+Each seed generates 500-2,000 related keywords. Total list: ~3,000 keywords.
+
+**Step 3: Filter by metrics**
+- Remove keywords under 100 monthly searches
+- Remove keywords with KD over 50 (new site)
+- Focus on commercial and informational intent
+- Filtered list: ~400 keywords
+
+**Step 4: Analyze intent**
+Group by intent type:
+- Informational (how-to, what-is): 200 keywords
+- Commercial (best, reviews, vs.): 150 keywords
+- Transactional (pricing, buy, free trial): 50 keywords
+
+**Step 5: Build clusters**
+- Pillar: "Complete Guide to AI Writing Tools"
+- Cluster 1: Reviews (Jasper, Copy.ai, Rytr, etc.)
+- Cluster 2: Comparisons (Jasper vs ChatGPT, etc.)
+- Cluster 3: Use cases (AI for blog posts, emails, ads)
+- Cluster 4: How-to guides (prompting, editing, etc.)
+
+**Step 6: Prioritize**
+Top priority: Review articles for tools with affiliate programs, medium KD, high commercial intent.
+
+Second priority: Comparison articles with clear purchase intent.
+
+Third priority: How-to content that builds authority for competitive terms.
 
 ## Conclusion
 
-Time-consuming? Yes. Worth it? Look at your analytics after three months of targeted content. The data answers itself.`,
+Keyword research in 2026 serves two fronts: traditional SEO and AI search optimization. The process remains systematic—seed discovery, expansion, metric analysis, intent evaluation, clustering, and prioritization—but now includes consideration of how AI systems discover and cite content.
+
+The fundamentals haven't changed: match search intent, build topical authority, and create content that genuinely helps users. What has changed: the need to structure content for AI citation and track visibility across multiple platforms.
+
+Time-consuming? Yes. Worth it? Look at your analytics after three months of targeted, intent-matched content. The data speaks for itself.`,
     faq: [
-      { question: 'How many keywords should I target per page?', answer: 'Focus on one primary keyword and 2-5 related secondary keywords per page.' },
-      { question: 'How do I know if a keyword is too competitive?', answer: 'Check the keyword difficulty score in your SEO tool and analyze who is ranking. If all results are major sites, it may be too competitive.' },
+      { question: 'How many keywords should I target per page?', answer: 'Focus on one primary keyword and 2-5 semantically related secondary keywords per page. Google understands topic clusters—targeting one topic thoroughly beats spreading thin across many keywords.' },
+      { question: 'How do I know if a keyword is too competitive?', answer: 'Check the keyword difficulty score in your SEO tool (aim for KD under 40 for newer sites). Analyze who ranks on page 1—if all results are major authority sites with extensive backlinks, the keyword may be too competitive for now.' },
+      { question: 'How often should I do keyword research?', answer: 'Quarterly reviews are standard for most businesses. Monthly reviews are appropriate for fast-moving industries or during major launches. Annual keyword research is insufficient given how quickly search behavior evolves.' },
+      { question: 'What is the best free keyword research tool?', answer: 'Google Keyword Planner is the best free option for volume data (requires a Google Ads account). AnswerThePublic and AlsoAsked are excellent for question-based keyword discovery. For comprehensive research, paid tools like Ubersuggest ($29/mo) offer significantly better data.' },
+      { question: 'Should I focus on short-tail or long-tail keywords?', answer: 'Both, but prioritize differently based on site authority. New sites should focus on long-tail keywords (lower competition, higher specificity). Established sites can target short-tail head terms while maintaining long-tail coverage for topical depth.' },
+      { question: 'How does AI search affect keyword research?', answer: 'AI search increases the importance of question-based keywords, conversational queries, and content structured for direct answers. Track AI visibility alongside traditional rankings, and optimize for featured snippets which AI systems often cite.' },
     ],
     relatedToolIds: ['tool-ahrefs', 'tool-semrush'],
     publishedAt: '2026-04-21',
+    updatedAt: '2026-04-21',
   },
   {
     id: 'post-best-content-optimization-tools-2026',
