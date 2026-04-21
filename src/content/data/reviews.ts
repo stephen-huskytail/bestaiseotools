@@ -339,7 +339,7 @@ It is not a replacement for human expertise—every article needs editing. But a
   },
   {
     id: 'review-surfer',
-    title: 'Surfer SEO Review 2024: Is It Worth the Investment?',
+    title: 'Surfer SEO Review 2026: Is It Worth the Investment?',
     slug: 'surfer-seo-review',
     toolId: 'tool-surfer',
     authorId: 'author-1',
@@ -375,7 +375,7 @@ Surfer SEO is an excellent tool for content creators who want data-driven guidan
       overall: 4.5,
     },
     verdict: 'Surfer SEO is a must-have for serious content marketers. The data-driven approach takes the guesswork out of SEO content creation.',
-    publishedAt: '2024-02-15',
+    publishedAt: '2026-04-21',
   },
   {
     id: 'review-ahrefs',
@@ -415,7 +415,7 @@ If you're serious about SEO, Ahrefs is worth every penny. The data accuracy and 
       overall: 4.8,
     },
     verdict: 'Ahrefs is the gold standard for SEO professionals. Expensive but worth it for anyone doing SEO at scale.',
-    publishedAt: '2024-02-10',
+    publishedAt: '2026-04-21',
   },
   {
     id: 'review-jasper',

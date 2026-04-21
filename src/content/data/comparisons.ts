@@ -769,7 +769,7 @@ Yes! Many content teams use Jasper to generate drafts and Surfer to optimize the
     winnerId: 'tool-surfer',
     winnerReason: 'For SEO-focused content, Surfer provides more actionable data. Jasper is better for pure content generation at scale.',
     authorId: 'author-1',
-    publishedAt: '2024-02-20',
+    publishedAt: '2026-04-21',
   },
 ]
 

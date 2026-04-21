@@ -21,7 +21,7 @@ export const tools: Tool[] = [
     cons: ['Can be expensive for beginners', 'Learning curve for advanced features'],
     rating: 4.5,
     featured: true,
-    publishedAt: '2024-01-15',
+    publishedAt: '2026-04-21',
   },
   {
     id: 'tool-jasper',
@@ -42,7 +42,7 @@ export const tools: Tool[] = [
     cons: ['Credits run out quickly', 'Needs human editing'],
     rating: 4.3,
     featured: true,
-    publishedAt: '2024-01-10',
+    publishedAt: '2026-04-21',
   },
   {
     id: 'tool-ahrefs',
@@ -63,7 +63,7 @@ export const tools: Tool[] = [
     cons: ['Expensive', 'Steep learning curve'],
     rating: 4.8,
     featured: true,
-    publishedAt: '2024-01-05',
+    publishedAt: '2026-04-21',
   },
   {
     id: 'tool-semrush',
@@ -84,7 +84,7 @@ export const tools: Tool[] = [
     cons: ['Can be overwhelming', 'Expensive for full features'],
     rating: 4.7,
     featured: true,
-    publishedAt: '2024-01-08',
+    publishedAt: '2026-04-21',
   },
   {
     id: 'tool-screaming-frog',
@@ -104,7 +104,7 @@ export const tools: Tool[] = [
     cons: ['Desktop only', 'Resource intensive'],
     rating: 4.6,
     featured: false,
-    publishedAt: '2024-02-01',
+    publishedAt: '2026-04-21',
   },
   {
     id: 'tool-frase',
