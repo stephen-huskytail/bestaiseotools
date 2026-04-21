@@ -1,0 +1,28 @@
+{
+  "target": "smartseotools.ai",
+  "country": "us",
+  "keywords": [
+    { "keyword": "best ai seo tools", "slug": "best-ai-seo-tools", "type": "listicle", "priority": "P1" },
+    { "keyword": "ai seo tools 2026", "slug": "ai-seo-tools-guide-2026", "type": "guide", "priority": "P1" },
+    { "keyword": "best content optimization tools", "slug": "best-content-optimization-tools", "type": "listicle", "priority": "P1" },
+    { "keyword": "best local seo tools", "slug": "best-local-seo-tools", "type": "listicle", "priority": "P1" },
+    { "keyword": "keyword research guide", "slug": "keyword-research-guide-2026", "type": "guide", "priority": "P1" },
+    { "keyword": "google business profile tools", "slug": "google-business-profile-tools", "type": "listicle", "priority": "P2" },
+    { "keyword": "ahrefs vs semrush", "slug": "ahrefs-vs-semrush", "type": "comparison", "priority": "P1" },
+    { "keyword": "surfer seo vs clearscope", "slug": "surfer-seo-vs-clearscope", "type": "comparison", "priority": "P2" },
+    { "keyword": "neuronwriter vs frase", "slug": "neuronwriter-vs-frase", "type": "comparison", "priority": "P2" },
+    { "keyword": "surfer seo vs jasper ai", "slug": "surfer-seo-vs-jasper-ai", "type": "comparison", "priority": "P2" },
+    { "keyword": "semrush review", "slug": "semrush-review", "type": "review", "priority": "P1" },
+    { "keyword": "ahrefs review", "slug": "ahrefs-review", "type": "review", "priority": "P1" },
+    { "keyword": "surfer seo review", "slug": "surfer-seo-review", "type": "review", "priority": "P1" },
+    { "keyword": "frase review", "slug": "frase-review", "type": "review", "priority": "P2" },
+    { "keyword": "jasper ai review", "slug": "jasper-ai-review", "type": "review", "priority": "P2" },
+    { "keyword": "clearscope review", "slug": "clearscope-review", "type": "review", "priority": "P2" },
+    { "keyword": "koala ai review", "slug": "koala-ai-review", "type": "review", "priority": "P2" },
+    { "keyword": "neuronwriter review", "slug": "neuronwriter-review", "type": "review", "priority": "P2" }
+  ],
+  "alert_threshold": {
+    "position_drop": 5,
+    "not_in_top_100": true
+  }
+}
