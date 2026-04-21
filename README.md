@@ -1,6 +1,6 @@
 # SmartSEOTools.ai
 
-Next.js + Sanity CMS affiliate site for AI SEO tools.
+Next.js affiliate site for AI SEO tools with MDX content.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ Deployed to Vercel. The Vercel project must have Doppler integration enabled or 
 ## Stack
 
 - **Framework**: Next.js 16
-- **CMS**: Sanity
+- **Content**: MDX (in-repo)
 - **Hosting**: Vercel
 - **Secrets**: Doppler
 - **Analytics**: PostHog, Google Analytics 4

@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "doppler run --project automationwarrior --config prd -- next dev",
+    "build": "doppler run --project automationwarrior --config prd -- next build",
+    "start": "doppler run --project automationwarrior --config prd -- next start",
+    "lint": "eslint",
+    "dev:local": "next dev",
+    "build:local": "next build"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.4",
