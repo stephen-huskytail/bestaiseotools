@@ -28,11 +28,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${review.title} - Smart SEO Tools`,
     description: review.excerpt,
+    alternates: {
+      canonical: `/reviews/${slug}`,
+    },
     openGraph: {
       title: review.title,
       description: review.excerpt,
       type: 'article',
       images: review.featuredImage ? [{ url: review.featuredImage }] : undefined,
+      publishedTime: review.publishedAt,
+      modifiedTime: review.updatedAt || review.publishedAt,
+      authors: review.author?.name ? [review.author.name] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: review.title,
+      description: review.excerpt,
+      images: review.featuredImage ? [review.featuredImage] : undefined,
     },
   }
 }

@@ -11,6 +11,14 @@ const REVIEWS_PER_PAGE = 9
 export const metadata: Metadata = {
   title: 'Tool Reviews - Smart SEO Tools',
   description: 'In-depth reviews of the best AI SEO tools to help you make informed decisions.',
+  alternates: {
+    canonical: '/reviews',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tool Reviews - Smart SEO Tools',
+    description: 'In-depth reviews of the best AI SEO tools to help you make informed decisions.',
+  },
 }
 
 interface Props {
@@ -88,7 +96,7 @@ export default async function ReviewsPage({ searchParams }: Props) {
                       <span className="text-gray-500">{review.author.name}</span>
                     )}
                     {review.publishedAt && (
-                      <span className="text-gray-400">
+                      <span className="text-gray-500">
                         {new Date(review.publishedAt).toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric',

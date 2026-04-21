@@ -24,10 +24,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${tool.name} Review - Smart SEO Tools`,
     description: tool.description,
+    alternates: {
+      canonical: `/tools/${slug}`,
+    },
     openGraph: {
       title: `${tool.name} Review`,
       description: tool.description,
       type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${tool.name} Review`,
+      description: tool.description,
     },
   }
 }

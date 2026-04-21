@@ -12,6 +12,14 @@ const POSTS_PER_PAGE = 9
 export const metadata: Metadata = {
   title: 'Blog - Smart SEO Tools',
   description: 'Tips, guides, and insights about AI-powered SEO tools and strategies.',
+  alternates: {
+    canonical: '/blog',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog - Smart SEO Tools',
+    description: 'Tips, guides, and insights about AI-powered SEO tools and strategies.',
+  },
 }
 
 interface Props {
@@ -79,7 +87,7 @@ export default async function BlogPage({ searchParams }: Props) {
                       {post.excerpt}
                     </p>
                   )}
-                  <div className="mt-4 flex items-center justify-between text-sm text-gray-400">
+                  <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
                     <div className="flex items-center gap-2">
                       {post.publishedAt && (
                         <span>
