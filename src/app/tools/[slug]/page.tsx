@@ -1,53 +1,24 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { client, urlFor } from '../../../../sanity/lib/client'
-import { toolBySlugQuery, toolsQuery } from '../../../../sanity/lib/queries'
+import { getToolBySlug, getAllTools } from '../../../content'
 import { AffiliateButton, RatingStars, PricingCard } from '../../../components'
 import { JsonLd, generateProductJsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
-import { PortableText, PortableTextBlock } from '@portabletext/react'
 
 export const revalidate = 3600
-
-interface Tool {
-  _id: string
-  name: string
-  slug: { current: string }
-  description: string
-  longDescription?: PortableTextBlock[]
-  logo?: { asset: { _ref: string } }
-  website?: string
-  affiliateLink?: string
-  category?: { _id: string; name: string; slug: { current: string } }
-  pricing?: {
-    hasFree?: boolean
-    startingPrice?: number
-    pricingModel?: 'freemium' | 'subscription' | 'one-time' | 'usage-based' | 'free'
-  }
-  features?: string[]
-  pros?: string[]
-  cons?: string[]
-  rating?: number
-  publishedAt?: string
-}
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
-async function getTool(slug: string): Promise<Tool | null> {
-  return client.fetch(toolBySlugQuery, { slug })
-}
-
 export async function generateStaticParams() {
-  const tools: Tool[] = await client.fetch(toolsQuery)
-  return tools.map((tool) => ({ slug: tool.slug.current }))
+  const tools = getAllTools()
+  return tools.map((tool) => ({ slug: tool.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const tool = await getTool(slug)
+  const tool = getToolBySlug(slug)
   if (!tool) return {}
 
   return {
@@ -63,20 +34,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ToolPage({ params }: Props) {
   const { slug } = await params
-  const tool = await getTool(slug)
+  const tool = getToolBySlug(slug)
 
   if (!tool) {
     notFound()
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bestaiseotools.com'
-  const logoUrl = tool.logo ? urlFor(tool.logo).width(200).url() : undefined
 
   const productJsonLd = generateProductJsonLd({
     name: tool.name,
-    description: tool.description,
-    image: logoUrl,
-    url: `${siteUrl}/tools/${tool.slug.current}`,
+    description: tool.description || '',
+    url: `${siteUrl}/tools/${tool.slug}`,
     aggregateRating: tool.rating ? { ratingValue: tool.rating } : undefined,
     offers: tool.pricing?.startingPrice
       ? { price: tool.pricing.startingPrice, priceCurrency: 'USD' }
@@ -86,7 +55,7 @@ export default async function ToolPage({ params }: Props) {
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },
     { name: 'Tools', url: `${siteUrl}/tools` },
-    { name: tool.name, url: `${siteUrl}/tools/${tool.slug.current}` },
+    { name: tool.name, url: `${siteUrl}/tools/${tool.slug}` },
   ])
 
   return (
@@ -108,20 +77,14 @@ export default async function ToolPage({ params }: Props) {
         <header className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="flex items-center gap-6">
-              {tool.logo && (
-                <Image
-                  src={urlFor(tool.logo).width(100).height(100).url()}
-                  alt={tool.name}
-                  width={100}
-                  height={100}
-                  className="rounded-xl"
-                />
-              )}
+              <div className="flex h-24 w-24 items-center justify-center rounded-xl bg-blue-100 text-blue-600 text-3xl font-bold">
+                {tool.name.charAt(0)}
+              </div>
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">{tool.name}</h1>
                 {tool.category && (
                   <Link
-                    href={`/categories/${tool.category.slug.current}`}
+                    href={`/categories/${tool.category.slug}`}
                     className="mt-1 inline-block text-sm text-blue-600 hover:underline"
                   >
                     {tool.category.name}
@@ -153,7 +116,7 @@ export default async function ToolPage({ params }: Props) {
             <div className="lg:col-span-2">
               {tool.longDescription && (
                 <section className="prose prose-lg max-w-none">
-                  <PortableText value={tool.longDescription} />
+                  <div dangerouslySetInnerHTML={{ __html: tool.longDescription.replace(/\n/g, '<br/>') }} />
                 </section>
               )}
 

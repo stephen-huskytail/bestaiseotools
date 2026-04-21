@@ -1,8 +1,6 @@
 'use client'
 
 import { useCallback } from 'react'
-import Image from 'next/image'
-import { urlFor } from '../../sanity/lib/client'
 import { RatingStars } from './RatingStars'
 import { AffiliateButton } from './AffiliateButton'
 import { trackEvent, ComparisonInteractionEvent } from '@/lib/analytics'
@@ -11,7 +9,7 @@ interface Tool {
   _id: string
   name: string
   slug: { current: string }
-  logo?: { asset: { _ref: string } }
+  logo?: string
   description?: string
   rating?: number
   pricing?: {
@@ -67,15 +65,9 @@ export function ComparisonTable({
             {tools.map((tool) => (
               <th key={tool._id} scope="col" className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-500">
                 <div className="flex flex-col items-center gap-2">
-                  {tool.logo && (
-                    <Image
-                      src={urlFor(tool.logo).width(40).height(40).url()}
-                      alt={tool.name}
-                      width={40}
-                      height={40}
-                      className="rounded-lg"
-                    />
-                  )}
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
+                    {tool.name.charAt(0)}
+                  </div>
                   <span className={winner?._id === tool._id ? 'text-blue-600 font-semibold' : ''}>
                     {tool.name}
                     {winner?._id === tool._id && (

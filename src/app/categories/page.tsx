@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { client } from '../../../sanity/lib/client'
-import { categoriesQuery } from '../../../sanity/lib/queries'
+import { getAllCategories } from '../../content'
 
 export const revalidate = 3600
 
@@ -10,16 +9,8 @@ export const metadata: Metadata = {
   description: 'Browse AI SEO tools by category to find the perfect solution for your needs.',
 }
 
-interface Category {
-  _id: string
-  name: string
-  slug: { current: string }
-  description?: string
-  icon?: string
-}
-
 export default async function CategoriesPage() {
-  const categories = await client.fetch<Category[]>(categoriesQuery)
+  const categories = getAllCategories()
 
   return (
     <div className="bg-white">
@@ -37,18 +28,13 @@ export default async function CategoriesPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => (
               <Link
-                key={category._id}
-                href={`/categories/${category.slug.current}`}
+                key={category.id}
+                href={`/categories/${category.slug}`}
                 className="group rounded-xl border border-gray-200 bg-white p-6 transition hover:border-blue-300 hover:shadow-lg"
               >
-                <div className="flex items-center gap-4">
-                  {category.icon && (
-                    <span className="text-3xl">{category.icon}</span>
-                  )}
-                  <h2 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600">
-                    {category.name}
-                  </h2>
-                </div>
+                <h2 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600">
+                  {category.name}
+                </h2>
                 {category.description && (
                   <p className="mt-3 text-gray-600">{category.description}</p>
                 )}

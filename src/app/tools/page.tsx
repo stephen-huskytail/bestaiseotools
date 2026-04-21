@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { client, urlFor } from '../../../sanity/lib/client'
-import { toolsQuery, categoriesQuery } from '../../../sanity/lib/queries'
+import { getAllTools, getAllCategories } from '../../content'
 import { RatingStars, AffiliateButton } from '../../components'
 
 export const revalidate = 3600
@@ -12,33 +10,9 @@ export const metadata: Metadata = {
   description: 'Browse and compare all AI-powered SEO tools to find the perfect solution for your needs.',
 }
 
-interface Tool {
-  _id: string
-  name: string
-  slug: { current: string }
-  description?: string
-  logo?: { asset: { _ref: string } }
-  affiliateLink?: string
-  category?: { _id: string; name: string; slug: { current: string } }
-  pricing?: {
-    hasFree?: boolean
-    startingPrice?: number
-  }
-  rating?: number
-  featured?: boolean
-}
-
-interface Category {
-  _id: string
-  name: string
-  slug: { current: string }
-}
-
 export default async function ToolsPage() {
-  const [tools, categories] = await Promise.all([
-    client.fetch<Tool[]>(toolsQuery),
-    client.fetch<Category[]>(categoriesQuery),
-  ])
+  const tools = getAllTools()
+  const categories = getAllCategories()
 
   return (
     <div className="bg-white">
@@ -58,9 +32,9 @@ export default async function ToolsPage() {
               <h2 className="font-semibold text-gray-900">Categories</h2>
               <ul className="mt-4 space-y-2">
                 {categories.map((category) => (
-                  <li key={category._id}>
+                  <li key={category.id}>
                     <Link
-                      href={`/categories/${category.slug.current}`}
+                      href={`/categories/${category.slug}`}
                       className="text-sm text-gray-600 hover:text-blue-600"
                     >
                       {category.name}
@@ -76,22 +50,16 @@ export default async function ToolsPage() {
             <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {tools.map((tool) => (
                 <article
-                  key={tool._id}
+                  key={tool.id}
                   className="group rounded-lg border border-gray-200 bg-white p-4 transition hover:border-blue-300 hover:shadow-md"
                 >
                   <div className="flex items-start gap-4">
-                    {tool.logo && (
-                      <Image
-                        src={urlFor(tool.logo).width(48).height(48).url()}
-                        alt={tool.name}
-                        width={48}
-                        height={48}
-                        className="rounded-lg"
-                      />
-                    )}
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
+                      {tool.name.charAt(0)}
+                    </div>
                     <div className="flex-1">
                       <Link
-                        href={`/tools/${tool.slug.current}`}
+                        href={`/tools/${tool.slug}`}
                         className="font-semibold text-gray-900 group-hover:text-blue-600"
                       >
                         {tool.name}

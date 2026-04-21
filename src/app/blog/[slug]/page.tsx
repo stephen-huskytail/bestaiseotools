@@ -1,10 +1,7 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { PortableText, PortableTextBlock } from '@portabletext/react'
-import { client, urlFor } from '../../../../sanity/lib/client'
-import { postBySlugQuery, postsQuery } from '../../../../sanity/lib/queries'
+import { getPostBySlug, getAllPosts } from '../../../content'
 import { FAQAccordion, AffiliateButton } from '../../../components'
 import {
   JsonLd,
@@ -15,47 +12,18 @@ import {
 
 export const revalidate = 3600
 
-interface Post {
-  _id: string
-  title: string
-  slug: { current: string }
-  excerpt?: string
-  body?: PortableTextBlock[]
-  category?: { _id: string; name: string; slug: { current: string } }
-  author?: {
-    _id: string
-    name: string
-    bio?: string
-    image?: { asset: { _ref: string } }
-  }
-  faq?: Array<{ question: string; answer: string }>
-  relatedTools?: Array<{
-    _id: string
-    name: string
-    slug: { current: string }
-    logo?: { asset: { _ref: string } }
-    affiliateLink?: string
-  }>
-  featuredImage?: { asset: { _ref: string } }
-  publishedAt?: string
-}
-
 interface Props {
   params: Promise<{ slug: string }>
 }
 
-async function getPost(slug: string): Promise<Post | null> {
-  return client.fetch(postBySlugQuery, { slug })
-}
-
 export async function generateStaticParams() {
-  const posts: Post[] = await client.fetch(postsQuery)
-  return posts.map((post) => ({ slug: post.slug.current }))
+  const posts = getAllPosts()
+  return posts.map((post) => ({ slug: post.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = await getPost(slug)
+  const post = getPostBySlug(slug)
   if (!post) return {}
 
   return {
@@ -71,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
-  const post = await getPost(slug)
+  const post = getPostBySlug(slug)
 
   if (!post) {
     notFound()
@@ -82,7 +50,6 @@ export default async function BlogPostPage({ params }: Props) {
   const articleJsonLd = generateArticleJsonLd({
     headline: post.title,
     description: post.excerpt,
-    image: post.featuredImage ? urlFor(post.featuredImage).width(1200).url() : undefined,
     datePublished: post.publishedAt,
     author: {
       name: post.author?.name || 'BestAISEOTools Team',
@@ -96,7 +63,7 @@ export default async function BlogPostPage({ params }: Props) {
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },
     { name: 'Blog', url: `${siteUrl}/blog` },
-    { name: post.title, url: `${siteUrl}/blog/${post.slug.current}` },
+    { name: post.title, url: `${siteUrl}/blog/${post.slug}` },
   ])
 
   return (
@@ -118,7 +85,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <li>/</li>
                 <li>
                   <Link
-                    href={`/categories/${post.category.slug.current}`}
+                    href={`/categories/${post.category.slug}`}
                     className="hover:text-blue-600"
                   >
                     {post.category.name}
@@ -130,34 +97,13 @@ export default async function BlogPostPage({ params }: Props) {
         </nav>
 
         <header className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-          {post.featuredImage && (
-            <Image
-              src={urlFor(post.featuredImage).width(1200).height(600).url()}
-              alt={post.title}
-              width={1200}
-              height={600}
-              className="mb-8 rounded-xl object-cover"
-              priority
-            />
-          )}
           <h1 className="text-4xl font-bold text-gray-900">{post.title}</h1>
           {post.excerpt && (
             <p className="mt-4 text-xl text-gray-600">{post.excerpt}</p>
           )}
           <div className="mt-6 flex flex-wrap items-center gap-4">
             {post.author && (
-              <div className="flex items-center gap-2">
-                {post.author.image && (
-                  <Image
-                    src={urlFor(post.author.image).width(40).height(40).url()}
-                    alt={post.author.name}
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
-                )}
-                <span className="text-sm text-gray-600">{post.author.name}</span>
-              </div>
+              <span className="text-sm text-gray-600">{post.author.name}</span>
             )}
             {post.publishedAt && (
               <span className="text-sm text-gray-500">
@@ -174,7 +120,21 @@ export default async function BlogPostPage({ params }: Props) {
         <article className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
           {post.body && (
             <div className="prose prose-lg max-w-none">
-              <PortableText value={post.body} />
+              {post.body.split('\n').map((paragraph, index) => {
+                if (paragraph.startsWith('## ')) {
+                  return <h2 key={index}>{paragraph.slice(3)}</h2>
+                }
+                if (paragraph.startsWith('### ')) {
+                  return <h3 key={index}>{paragraph.slice(4)}</h3>
+                }
+                if (paragraph.startsWith('- ')) {
+                  return <li key={index}>{paragraph.slice(2)}</li>
+                }
+                if (paragraph.trim()) {
+                  return <p key={index}>{paragraph}</p>
+                }
+                return null
+              })}
             </div>
           )}
 
@@ -195,21 +155,15 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="grid gap-4 sm:grid-cols-2">
                 {post.relatedTools.map((tool) => (
                   <div
-                    key={tool._id}
+                    key={tool.id}
                     className="flex items-center justify-between rounded-lg bg-white p-4 shadow-sm"
                   >
                     <div className="flex items-center gap-3">
-                      {tool.logo && (
-                        <Image
-                          src={urlFor(tool.logo).width(40).height(40).url()}
-                          alt={tool.name}
-                          width={40}
-                          height={40}
-                          className="rounded-lg"
-                        />
-                      )}
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
+                        {tool.name.charAt(0)}
+                      </div>
                       <Link
-                        href={`/tools/${tool.slug.current}`}
+                        href={`/tools/${tool.slug}`}
                         className="font-medium text-gray-900 hover:text-blue-600"
                       >
                         {tool.name}

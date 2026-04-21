@@ -1,32 +1,20 @@
 import type { MetadataRoute } from 'next'
-import { client } from '../../sanity/lib/client'
+import {
+  getAllTools,
+  getAllReviews,
+  getAllComparisons,
+  getAllPosts,
+  getAllCategories,
+} from '../content'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bestaiseotools.com'
 
-interface SlugItem {
-  slug: { current: string }
-  _updatedAt?: string
-}
-
-async function getAllSlugs(): Promise<{
-  tools: SlugItem[]
-  reviews: SlugItem[]
-  comparisons: SlugItem[]
-  posts: SlugItem[]
-  categories: SlugItem[]
-}> {
-  const [tools, reviews, comparisons, posts, categories] = await Promise.all([
-    client.fetch<SlugItem[]>(`*[_type == "tool" && defined(slug.current)] { slug, _updatedAt }`),
-    client.fetch<SlugItem[]>(`*[_type == "review" && defined(slug.current)] { slug, _updatedAt }`),
-    client.fetch<SlugItem[]>(`*[_type == "comparison" && defined(slug.current)] { slug, _updatedAt }`),
-    client.fetch<SlugItem[]>(`*[_type == "post" && defined(slug.current)] { slug, _updatedAt }`),
-    client.fetch<SlugItem[]>(`*[_type == "category" && defined(slug.current)] { slug, _updatedAt }`),
-  ])
-  return { tools, reviews, comparisons, posts, categories }
-}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const { tools, reviews, comparisons, posts, categories } = await getAllSlugs()
+  const tools = getAllTools()
+  const reviews = getAllReviews()
+  const comparisons = getAllComparisons()
+  const posts = getAllPosts()
+  const categories = getAllCategories()
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
@@ -38,36 +26,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   const toolPages: MetadataRoute.Sitemap = tools.map((item) => ({
-    url: `${SITE_URL}/tools/${item.slug.current}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : new Date(),
+    url: `${SITE_URL}/tools/${item.slug}`,
+    lastModified: item.publishedAt ? new Date(item.publishedAt) : new Date(),
     changeFrequency: 'weekly',
     priority: 0.8,
   }))
 
   const reviewPages: MetadataRoute.Sitemap = reviews.map((item) => ({
-    url: `${SITE_URL}/reviews/${item.slug.current}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : new Date(),
+    url: `${SITE_URL}/reviews/${item.slug}`,
+    lastModified: item.publishedAt ? new Date(item.publishedAt) : new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   }))
 
   const comparisonPages: MetadataRoute.Sitemap = comparisons.map((item) => ({
-    url: `${SITE_URL}/comparisons/${item.slug.current}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : new Date(),
+    url: `${SITE_URL}/comparisons/${item.slug}`,
+    lastModified: item.publishedAt ? new Date(item.publishedAt) : new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   }))
 
   const postPages: MetadataRoute.Sitemap = posts.map((item) => ({
-    url: `${SITE_URL}/blog/${item.slug.current}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : new Date(),
+    url: `${SITE_URL}/blog/${item.slug}`,
+    lastModified: item.publishedAt ? new Date(item.publishedAt) : new Date(),
     changeFrequency: 'monthly',
     priority: 0.6,
   }))
 
   const categoryPages: MetadataRoute.Sitemap = categories.map((item) => ({
-    url: `${SITE_URL}/categories/${item.slug.current}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : new Date(),
+    url: `${SITE_URL}/categories/${item.slug}`,
+    lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.5,
   }))

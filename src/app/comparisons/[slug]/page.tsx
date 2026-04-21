@@ -1,68 +1,24 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { PortableText, PortableTextBlock } from '@portabletext/react'
-import { client, urlFor } from '../../../../sanity/lib/client'
-import { comparisonBySlugQuery, comparisonsQuery } from '../../../../sanity/lib/queries'
+import { getComparisonBySlug, getAllComparisons } from '../../../content'
 import { ComparisonTable, AffiliateButton } from '../../../components'
 import { JsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
 
 export const revalidate = 3600
 
-interface Tool {
-  _id: string
-  name: string
-  slug: { current: string }
-  logo?: { asset: { _ref: string } }
-  description?: string
-  rating?: number
-  pricing?: {
-    hasFree?: boolean
-    startingPrice?: number
-    pricingModel?: string
-  }
-  affiliateLink?: string
-}
-
-interface Comparison {
-  _id: string
-  title: string
-  slug: { current: string }
-  tools: Tool[]
-  excerpt?: string
-  body?: PortableTextBlock[]
-  comparisonTable?: Array<{
-    criterion: string
-    description?: string
-  }>
-  winner?: Tool
-  winnerReason?: string
-  author?: {
-    _id: string
-    name: string
-    image?: { asset: { _ref: string } }
-  }
-  featuredImage?: { asset: { _ref: string } }
-  publishedAt?: string
-}
-
 interface Props {
   params: Promise<{ slug: string }>
 }
 
-async function getComparison(slug: string): Promise<Comparison | null> {
-  return client.fetch(comparisonBySlugQuery, { slug })
-}
-
 export async function generateStaticParams() {
-  const comparisons: Comparison[] = await client.fetch(comparisonsQuery)
-  return comparisons.map((comparison) => ({ slug: comparison.slug.current }))
+  const comparisons = getAllComparisons()
+  return comparisons.map((comparison) => ({ slug: comparison.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const comparison = await getComparison(slug)
+  const comparison = getComparisonBySlug(slug)
   if (!comparison) return {}
 
   return {
@@ -78,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ComparisonPage({ params }: Props) {
   const { slug } = await params
-  const comparison = await getComparison(slug)
+  const comparison = getComparisonBySlug(slug)
 
   if (!comparison) {
     notFound()
@@ -89,7 +45,7 @@ export default async function ComparisonPage({ params }: Props) {
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },
     { name: 'Comparisons', url: `${siteUrl}/comparisons` },
-    { name: comparison.title, url: `${siteUrl}/comparisons/${comparison.slug.current}` },
+    { name: comparison.title, url: `${siteUrl}/comparisons/${comparison.slug}` },
   ])
 
   return (
@@ -108,34 +64,13 @@ export default async function ComparisonPage({ params }: Props) {
         </nav>
 
         <header className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          {comparison.featuredImage && (
-            <Image
-              src={urlFor(comparison.featuredImage).width(1200).height(600).url()}
-              alt={comparison.title}
-              width={1200}
-              height={600}
-              className="mb-8 rounded-xl object-cover"
-              priority
-            />
-          )}
           <h1 className="text-4xl font-bold text-gray-900">{comparison.title}</h1>
           {comparison.excerpt && (
             <p className="mt-4 text-xl text-gray-600">{comparison.excerpt}</p>
           )}
           <div className="mt-6 flex flex-wrap items-center gap-4">
             {comparison.author && (
-              <div className="flex items-center gap-2">
-                {comparison.author.image && (
-                  <Image
-                    src={urlFor(comparison.author.image).width(40).height(40).url()}
-                    alt={comparison.author.name}
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
-                )}
-                <span className="text-sm text-gray-600">By {comparison.author.name}</span>
-              </div>
+              <span className="text-sm text-gray-600">By {comparison.author.name}</span>
             )}
             {comparison.publishedAt && (
               <span className="text-sm text-gray-500">
@@ -154,10 +89,22 @@ export default async function ComparisonPage({ params }: Props) {
             <section className="mb-12">
               <h2 className="mb-6 text-2xl font-bold text-gray-900">Quick Comparison</h2>
               <ComparisonTable
-                tools={comparison.tools}
+                tools={comparison.tools.map(t => ({
+                  _id: t.id,
+                  name: t.name,
+                  slug: { current: t.slug },
+                  description: t.description,
+                  rating: t.rating,
+                  pricing: t.pricing,
+                  affiliateLink: t.affiliateLink,
+                }))}
                 criteria={comparison.comparisonTable}
-                winner={comparison.winner}
-                comparisonSlug={comparison.slug.current}
+                winner={comparison.winner ? {
+                  _id: comparison.winner.id,
+                  name: comparison.winner.name,
+                  slug: { current: comparison.winner.slug },
+                } : undefined}
+                comparisonSlug={comparison.slug}
               />
             </section>
           )}
@@ -165,15 +112,9 @@ export default async function ComparisonPage({ params }: Props) {
           {comparison.winner && (
             <section className="mb-12 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 p-8">
               <div className="flex flex-col items-center gap-4 sm:flex-row">
-                {comparison.winner.logo && (
-                  <Image
-                    src={urlFor(comparison.winner.logo).width(80).height(80).url()}
-                    alt={comparison.winner.name}
-                    width={80}
-                    height={80}
-                    className="rounded-xl"
-                  />
-                )}
+                <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-blue-200 text-blue-700 text-2xl font-bold">
+                  {comparison.winner.name.charAt(0)}
+                </div>
                 <div className="text-center sm:text-left">
                   <p className="text-sm font-medium uppercase tracking-wide text-blue-600">Our Pick</p>
                   <h3 className="text-2xl font-bold text-gray-900">{comparison.winner.name}</h3>
@@ -197,7 +138,24 @@ export default async function ComparisonPage({ params }: Props) {
 
           {comparison.body && (
             <article className="prose prose-lg mx-auto max-w-4xl">
-              <PortableText value={comparison.body} />
+              {comparison.body.split('\n').map((paragraph, index) => {
+                if (paragraph.startsWith('## ')) {
+                  return <h2 key={index}>{paragraph.slice(3)}</h2>
+                }
+                if (paragraph.startsWith('### ')) {
+                  return <h3 key={index}>{paragraph.slice(4)}</h3>
+                }
+                if (paragraph.startsWith('- ')) {
+                  return <li key={index}>{paragraph.slice(2)}</li>
+                }
+                if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+                  return <p key={index}><strong>{paragraph.slice(2, -2)}</strong></p>
+                }
+                if (paragraph.trim()) {
+                  return <p key={index}>{paragraph}</p>
+                }
+                return null
+              })}
             </article>
           )}
 
@@ -206,20 +164,14 @@ export default async function ComparisonPage({ params }: Props) {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {comparison.tools?.map((tool) => (
                 <Link
-                  key={tool._id}
-                  href={`/tools/${tool.slug.current}`}
+                  key={tool.id}
+                  href={`/tools/${tool.slug}`}
                   className="group rounded-lg border border-gray-200 p-4 transition hover:border-blue-300 hover:shadow-md"
                 >
                   <div className="flex items-center gap-3">
-                    {tool.logo && (
-                      <Image
-                        src={urlFor(tool.logo).width(48).height(48).url()}
-                        alt={tool.name}
-                        width={48}
-                        height={48}
-                        className="rounded-lg"
-                      />
-                    )}
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
+                      {tool.name.charAt(0)}
+                    </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">
                         {tool.name}
