@@ -1,5 +1,6 @@
 export { Header } from './Header'
 export { Footer } from './Footer'
+export { Logo } from './Logo'
 export { AffiliateButton } from './AffiliateButton'
 export { RatingStars } from './RatingStars'
 export { PricingCard } from './PricingCard'

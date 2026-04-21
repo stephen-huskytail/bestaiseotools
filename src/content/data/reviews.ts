@@ -147,7 +147,7 @@ The main limitation is volume—4 articles/month on the Starter plan is restrict
     title: 'Koala AI Review 2026: Best Budget AI Article Writer?',
     slug: 'koala-ai-review',
     toolId: 'tool-koala',
-    authorId: 'author-1',
+    authorId: 'author-2',
     featuredImage: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=1200&h=675&fit=crop',
     excerpt: 'Koala AI generates full SEO articles for just $9/month. After producing 50+ articles with it, here is my honest assessment.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*
@@ -382,7 +382,7 @@ Surfer SEO is an excellent tool for content creators who want data-driven guidan
     title: 'Ahrefs Review: The Ultimate SEO Toolkit?',
     slug: 'ahrefs-review',
     toolId: 'tool-ahrefs',
-    authorId: 'author-1',
+    authorId: 'author-3',
     featuredImage: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=675&fit=crop',
     excerpt: 'We dive deep into Ahrefs to see if it lives up to its reputation as the gold standard for SEO professionals.',
     body: `## Overview
@@ -422,7 +422,7 @@ If you're serious about SEO, Ahrefs is worth every penny. The data accuracy and 
     title: 'Jasper AI Review 2026: Best AI Writing Assistant for Marketing?',
     slug: 'jasper-ai-review',
     toolId: 'tool-jasper',
-    authorId: 'author-1',
+    authorId: 'author-2',
     featuredImage: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&h=675&fit=crop',
     excerpt: 'After using Jasper AI daily for 4 months, here is my honest review covering content generation, brand voice, team features, and whether it is worth $39-59/month.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*
@@ -738,7 +738,7 @@ For solo creators, Surfer SEO or Frase deliver 80%+ of the value at 40-50% of th
     title: 'Semrush Review 2026: The All-in-One SEO Platform Worth $119/Month?',
     slug: 'semrush-review',
     toolId: 'tool-semrush',
-    authorId: 'author-1',
+    authorId: 'author-3',
     featuredImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=675&fit=crop',
     excerpt: 'After 2 years using Semrush daily, here is my comprehensive review covering keyword research, site audits, competitive analysis, and whether it replaces multiple tools.',
     body: `*Disclosure: This review contains affiliate links. We may earn a commission at no extra cost to you.*

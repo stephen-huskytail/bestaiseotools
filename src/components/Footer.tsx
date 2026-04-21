@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Logo } from './Logo'
 
 export function Footer() {
   return (
@@ -6,9 +7,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="col-span-1 md:col-span-2">
-            <span className="text-lg font-bold text-gray-900">
-              Smart SEO Tools
-            </span>
+            <Logo size="sm" className="text-gray-900" />
             <p className="mt-4 text-sm text-gray-600">
               Your trusted source for discovering and comparing the best AI-powered
               SEO tools to boost your search rankings and grow your business.
@@ -57,7 +56,7 @@ export function Footer() {
         </div>
         <div className="mt-8 border-t border-gray-200 pt-8">
           <p className="text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Smart SEO Tools. All rights reserved.
+            &copy; {new Date().getFullYear()} SmartSEOTools.ai. All rights reserved.
           </p>
         </div>
       </div>

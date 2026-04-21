@@ -195,6 +195,7 @@ Clearscope remains excellent for enterprise teams where unlimited users and clea
     title: 'NeuronWriter vs Frase 2026: Best Budget Content Optimizer?',
     slug: 'neuronwriter-vs-frase',
     toolIds: ['tool-neuronwriter', 'tool-frase'],
+    authorId: 'author-2',
     featuredImage: 'https://images.unsplash.com/photo-1553484771-371a605b060b?w=1200&h=675&fit=crop',
     excerpt: 'Comparing the two best affordable content optimization tools. Which delivers better value under $50/month?',
     body: `*Disclosure: This post contains affiliate links. We may earn a commission at no extra cost to you.*
@@ -408,7 +409,6 @@ If you optimize 10+ articles monthly, NeuronWriter's credit system is more gener
     ],
     winnerId: 'tool-frase',
     winnerReason: 'Frase wins for most users due to superior research tools and cleaner interface. NeuronWriter is better for budget-constrained high-volume publishers.',
-    authorId: 'author-1',
     publishedAt: '2026-04-21',
   },
   {
@@ -416,6 +416,7 @@ If you optimize 10+ articles monthly, NeuronWriter's credit system is more gener
     title: 'Ahrefs vs Semrush 2026: The Definitive SEO Tool Comparison',
     slug: 'ahrefs-vs-semrush',
     toolIds: ['tool-ahrefs', 'tool-semrush'],
+    authorId: 'author-3',
     featuredImage: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=1200&h=675&fit=crop',
     excerpt: 'The two biggest names in SEO tools go head-to-head. After years of using both, here is the definitive comparison to help you choose.',
     body: `*Disclosure: This post contains affiliate links. We may earn a commission at no extra cost to you.*
@@ -729,7 +730,6 @@ The breadth of features—content tools, PPC analysis, social tracking—makes i
     ],
     winnerId: 'tool-ahrefs',
     winnerReason: 'Ahrefs wins for pure SEO work due to superior backlink data and focused toolset. Semrush wins for all-in-one marketing teams. The best choice depends on your primary use case.',
-    authorId: 'author-1',
     publishedAt: '2026-04-21',
   },
   {

@@ -1,14 +1,13 @@
 import Link from 'next/link'
+import { Logo } from './Logo'
 
 export function Header() {
   return (
     <header className="border-b border-gray-200 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold text-gray-900">
-              Smart SEO Tools
-            </span>
+          <Link href="/" className="flex items-center">
+            <Logo size="md" className="text-gray-900" />
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             <Link
