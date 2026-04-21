@@ -1,10 +1,14 @@
 'use client'
 
 import { useCallback } from 'react'
+import { trackEvent } from '@/lib/analytics'
 
 interface AffiliateButtonProps {
   href: string
   toolName: string
+  affiliateNetwork?: string
+  destinationUrl?: string
+  articleType?: string
   variant?: 'primary' | 'secondary'
   size?: 'sm' | 'md' | 'lg'
   className?: string
@@ -14,26 +18,23 @@ interface AffiliateButtonProps {
 export function AffiliateButton({
   href,
   toolName,
+  affiliateNetwork,
+  destinationUrl,
+  articleType,
   variant = 'primary',
   size = 'md',
   className = '',
   children,
 }: AffiliateButtonProps) {
   const handleClick = useCallback(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'affiliate_click', {
-        event_category: 'affiliate',
-        event_label: toolName,
-        affiliate_url: href,
-      })
-    }
-    if (typeof window !== 'undefined' && window.posthog) {
-      window.posthog.capture('affiliate_click', {
-        tool_name: toolName,
-        affiliate_url: href,
-      })
-    }
-  }, [href, toolName])
+    trackEvent('affiliate_click', {
+      tool_name: toolName,
+      affiliate_url: href,
+      affiliate_network: affiliateNetwork,
+      destination_url: destinationUrl,
+      article_type: articleType,
+    })
+  }, [href, toolName, affiliateNetwork, destinationUrl, articleType])
 
   const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-lg transition-colors'
 
@@ -64,9 +65,3 @@ export function AffiliateButton({
   )
 }
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void
-    posthog?: { capture: (event: string, properties?: Record<string, unknown>) => void }
-  }
-}

@@ -1,7 +1,11 @@
+'use client'
+
+import { useCallback } from 'react'
 import Image from 'next/image'
 import { urlFor } from '../../sanity/lib/client'
 import { RatingStars } from './RatingStars'
 import { AffiliateButton } from './AffiliateButton'
+import { trackEvent, ComparisonInteractionEvent } from '@/lib/analytics'
 
 interface Tool {
   _id: string
@@ -25,6 +29,7 @@ interface ComparisonTableProps {
     description?: string
   }>
   winner?: Tool | null
+  comparisonSlug?: string
   className?: string
 }
 
@@ -32,14 +37,31 @@ export function ComparisonTable({
   tools,
   criteria,
   winner,
+  comparisonSlug,
   className = '',
 }: ComparisonTableProps) {
+  const trackInteraction = useCallback(
+    (action: ComparisonInteractionEvent['action'], extra?: Partial<ComparisonInteractionEvent>) => {
+      trackEvent('comparison_interaction', {
+        action,
+        comparison_slug: comparisonSlug,
+        tool_names: tools.map((t) => t.name),
+        ...extra,
+      })
+    },
+    [comparisonSlug, tools]
+  )
+
   return (
     <div className={`overflow-x-auto ${className}`}>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 cursor-pointer hover:bg-gray-100"
+              onClick={() => trackInteraction('sort', { sort_column: 'feature' })}
+            >
               Feature
             </th>
             {tools.map((tool) => (
