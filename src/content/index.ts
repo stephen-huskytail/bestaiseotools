@@ -43,4 +43,5 @@ export {
   getPostBySlug,
   getAllPosts,
   getLatestPosts,
+  getRelatedPosts,
 } from './data/posts'

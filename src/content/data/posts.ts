@@ -293,7 +293,7 @@ Don't chase features—chase results. A $23/month tool used well beats a $300/mo
     id: 'post-ai-seo-guide',
     title: 'The Complete Guide to AI SEO Tools in 2026',
     slug: 'ai-seo-tools-guide-2026',
-    authorId: 'author-1',
+    authorId: 'author-2',
     categoryId: 'cat-ai-writing',
     featuredImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop',
     excerpt: 'Everything you need to know about using AI for SEO, from content creation to optimization.',
@@ -333,7 +333,7 @@ AI SEO tools are powerful allies in your marketing toolkit. Start with one tool 
     id: 'post-keyword-research',
     title: 'Keyword Research in 2026: A Step-by-Step Guide',
     slug: 'keyword-research-guide-2026',
-    authorId: 'author-1',
+    authorId: 'author-3',
     categoryId: 'cat-keyword-research',
     featuredImage: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&h=675&fit=crop',
     excerpt: 'Learn how to find profitable keywords that drive traffic and conversions.',
@@ -374,7 +374,7 @@ Keyword research takes time, but it's worth the investment. Good keyword researc
     id: 'post-best-content-optimization-tools-2026',
     title: 'Best AI Content Optimization Tools 2026: 8 Tools Tested & Ranked',
     slug: 'best-content-optimization-tools',
-    authorId: 'author-1',
+    authorId: 'author-2',
     categoryId: 'cat-content-optimization',
     featuredImage: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=675&fit=crop',
     excerpt: 'Content optimization tools help you create articles that rank. After testing 15+ tools, here are the 8 that actually improve search rankings.',
@@ -556,7 +556,7 @@ On a tight budget? Start with **NeuronWriter** at $23/month. Need maximum resear
     id: 'post-best-local-seo-tools-2026',
     title: 'Best AI Local SEO Tools 2026: 10 Tools for Local Search Dominance',
     slug: 'best-local-seo-tools',
-    authorId: 'author-1',
+    authorId: 'author-4',
     categoryId: 'cat-local-seo',
     featuredImage: 'https://images.unsplash.com/photo-1553484771-371a605b060b?w=1200&h=675&fit=crop',
     excerpt: 'Local SEO requires different tools than traditional SEO. Here are the best AI-powered tools for local search, Google Business Profile, and citation management.',
@@ -723,7 +723,7 @@ Pair it with **LocalFalcon** ($24/month) for detailed rank tracking and **Gather
     id: 'post-google-business-profile-tools-2026',
     title: 'Best Google Business Profile Tools 2026: Optimize Your GBP Listing',
     slug: 'google-business-profile-tools',
-    authorId: 'author-1',
+    authorId: 'author-4',
     categoryId: 'cat-local-seo',
     featuredImage: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=1200&h=675&fit=crop',
     excerpt: 'Your Google Business Profile is the most important asset for local search. These tools help you optimize, manage, and monitor your GBP for maximum visibility.',
@@ -894,6 +894,18 @@ export function getAllPosts(): Post[] {
 
 export function getLatestPosts(limit: number = 3): Post[] {
   return getAllPosts()
+    .sort((a, b) => new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime())
+    .slice(0, limit)
+}
+
+export function getRelatedPosts(currentSlug: string, limit: number = 3): Post[] {
+  const current = getPostBySlug(currentSlug)
+  if (!current) return []
+
+  const allPosts = getAllPosts()
+  return allPosts
+    .filter((post) => post.slug !== currentSlug)
+    .filter((post) => !current.categoryId || post.categoryId === current.categoryId)
     .sort((a, b) => new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime())
     .slice(0, limit)
 }

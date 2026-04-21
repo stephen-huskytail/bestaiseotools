@@ -4,14 +4,23 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { getPostBySlug, getAllPosts } from '../../../content'
-import { FAQAccordion, AffiliateButton } from '../../../components'
+import { getPostBySlug, getAllPosts, getRelatedPosts } from '../../../content'
+import {
+  FAQAccordion,
+  AffiliateButton,
+  AuthorBio,
+  TableOfContents,
+  ShareButtons,
+  RelatedPosts,
+} from '../../../components'
 import {
   JsonLd,
   generateArticleJsonLd,
   generateBreadcrumbJsonLd,
   generateFAQJsonLd,
 } from '../../../lib/jsonld'
+import { calculateReadingTime } from '../../../lib/reading-time'
+import { extractTocFromMarkdown } from '../../../lib/toc'
 
 export const revalidate = 3600
 
@@ -41,6 +50,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+function generateHeadingId(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = getPostBySlug(slug)
@@ -50,6 +66,10 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
+  const postUrl = `${siteUrl}/blog/${post.slug}`
+  const readingTime = calculateReadingTime(post.body || '')
+  const tocItems = extractTocFromMarkdown(post.body || '')
+  const relatedPosts = getRelatedPosts(slug, 3)
 
   const articleJsonLd = generateArticleJsonLd({
     headline: post.title,
@@ -105,12 +125,12 @@ export default async function BlogPostPage({ params }: Props) {
           {post.excerpt && (
             <p className="mt-4 text-xl text-gray-600">{post.excerpt}</p>
           )}
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-gray-500">
             {post.author && (
-              <span className="text-sm text-gray-600">{post.author.name}</span>
+              <span className="font-medium text-gray-700">{post.author.name}</span>
             )}
             {post.publishedAt && (
-              <span className="text-sm text-gray-500">
+              <span>
                 {new Date(post.publishedAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -118,6 +138,17 @@ export default async function BlogPostPage({ params }: Props) {
                 })}
               </span>
             )}
+            {readingTime > 0 && (
+              <span className="flex items-center gap-1">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {readingTime} min read
+              </span>
+            )}
+          </div>
+          <div className="mt-4">
+            <ShareButtons url={postUrl} title={post.title} />
           </div>
         </header>
 
@@ -136,63 +167,100 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <article className="mx-auto max-w-4xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-          {post.body && (
-            <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {post.body}
-              </ReactMarkdown>
+        <div className="mx-auto max-w-4xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+          {tocItems.length > 3 && (
+            <div className="mb-8">
+              <TableOfContents items={tocItems} />
             </div>
           )}
 
-          {post.faq && post.faq.length > 0 && (
-            <section className="mt-12">
-              <h2 className="mb-6 text-2xl font-bold text-gray-900">
-                Frequently Asked Questions
-              </h2>
-              <FAQAccordion items={post.faq} />
-            </section>
-          )}
-
-          {post.relatedTools && post.relatedTools.length > 0 && (
-            <section className="mt-12 rounded-xl bg-gray-50 p-6">
-              <h2 className="mb-4 text-xl font-bold text-gray-900">
-                Tools Mentioned in This Article
-              </h2>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {post.relatedTools.map((tool) => (
-                  <div
-                    key={tool.id}
-                    className="flex items-center justify-between rounded-lg bg-white p-4 shadow-sm"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
-                        {tool.name.charAt(0)}
-                      </div>
-                      <Link
-                        href={`/tools/${tool.slug}`}
-                        className="font-medium text-gray-900 hover:text-blue-600"
-                      >
-                        {tool.name}
-                      </Link>
-                    </div>
-                    {tool.affiliateLink && (
-                      <AffiliateButton
-                        href={tool.affiliateLink}
-                        toolName={tool.name}
-                        articleType="blog"
-                        size="sm"
-                        variant="secondary"
-                      >
-                        Try It
-                      </AffiliateButton>
-                    )}
-                  </div>
-                ))}
+          <article>
+            {post.body && (
+              <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    h2: ({ children }) => {
+                      const text = String(children)
+                      return <h2 id={generateHeadingId(text)}>{children}</h2>
+                    },
+                    h3: ({ children }) => {
+                      const text = String(children)
+                      return <h3 id={generateHeadingId(text)}>{children}</h3>
+                    },
+                    h4: ({ children }) => {
+                      const text = String(children)
+                      return <h4 id={generateHeadingId(text)}>{children}</h4>
+                    },
+                  }}
+                >
+                  {post.body}
+                </ReactMarkdown>
               </div>
-            </section>
-          )}
-        </article>
+            )}
+
+            {post.faq && post.faq.length > 0 && (
+              <section className="mt-12">
+                <h2 className="mb-6 text-2xl font-bold text-gray-900">
+                  Frequently Asked Questions
+                </h2>
+                <FAQAccordion items={post.faq} />
+              </section>
+            )}
+
+            {post.relatedTools && post.relatedTools.length > 0 && (
+              <section className="mt-12 rounded-xl bg-gray-50 p-6">
+                <h2 className="mb-4 text-xl font-bold text-gray-900">
+                  Tools Mentioned in This Article
+                </h2>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {post.relatedTools.map((tool) => (
+                    <div
+                      key={tool.id}
+                      className="flex items-center justify-between rounded-lg bg-white p-4 shadow-sm"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
+                          {tool.name.charAt(0)}
+                        </div>
+                        <Link
+                          href={`/tools/${tool.slug}`}
+                          className="font-medium text-gray-900 hover:text-blue-600"
+                        >
+                          {tool.name}
+                        </Link>
+                      </div>
+                      {tool.affiliateLink && (
+                        <AffiliateButton
+                          href={tool.affiliateLink}
+                          toolName={tool.name}
+                          articleType="blog"
+                          size="sm"
+                          variant="secondary"
+                        >
+                          Try It
+                        </AffiliateButton>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {post.author && (
+              <section className="mt-12">
+                <h2 className="mb-4 text-lg font-semibold text-gray-900">About the Author</h2>
+                <AuthorBio author={post.author} />
+              </section>
+            )}
+
+            <div className="mt-8 border-t border-gray-200 pt-8">
+              <ShareButtons url={postUrl} title={post.title} />
+            </div>
+          </article>
+
+          <RelatedPosts posts={relatedPosts} />
+        </div>
       </div>
     </>
   )

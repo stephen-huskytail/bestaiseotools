@@ -2,16 +2,31 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
 import { getAllPosts } from '../../content'
+import { Pagination } from '../../components'
+import { calculateReadingTime } from '../../lib/reading-time'
 
 export const revalidate = 3600
+
+const POSTS_PER_PAGE = 9
 
 export const metadata: Metadata = {
   title: 'Blog - Smart SEO Tools',
   description: 'Tips, guides, and insights about AI-powered SEO tools and strategies.',
 }
 
-export default async function BlogPage() {
-  const posts = getAllPosts()
+interface Props {
+  searchParams: Promise<{ page?: string }>
+}
+
+export default async function BlogPage({ searchParams }: Props) {
+  const params = await searchParams
+  const currentPage = Math.max(1, parseInt(params.page || '1', 10))
+  const allPosts = getAllPosts()
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
+  const posts = allPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  )
 
   return (
     <div className="bg-white">
@@ -64,18 +79,20 @@ export default async function BlogPage() {
                       {post.excerpt}
                     </p>
                   )}
-                  <div className="mt-4 flex items-center justify-between text-sm">
-                    {post.author && (
-                      <span className="text-gray-500">{post.author.name}</span>
-                    )}
-                    {post.publishedAt && (
-                      <span className="text-gray-400">
-                        {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                        })}
-                      </span>
-                    )}
+                  <div className="mt-4 flex items-center justify-between text-sm text-gray-400">
+                    <div className="flex items-center gap-2">
+                      {post.publishedAt && (
+                        <span>
+                          {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                          })}
+                        </span>
+                      )}
+                      {post.body && (
+                        <span>{calculateReadingTime(post.body)} min</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </article>
@@ -84,6 +101,16 @@ export default async function BlogPage() {
         ) : (
           <div className="py-12 text-center">
             <p className="text-gray-500">No blog posts yet. Check back soon!</p>
+          </div>
+        )}
+
+        {totalPages > 1 && (
+          <div className="mt-12">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              basePath="/blog"
+            />
           </div>
         )}
       </div>

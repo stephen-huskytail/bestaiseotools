@@ -3,8 +3,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
 import { getReviewBySlug, getAllReviews } from '../../../content'
-import { AffiliateButton, RatingStars } from '../../../components'
+import { AffiliateButton, RatingStars, AuthorBio, ShareButtons } from '../../../components'
 import { JsonLd, generateReviewJsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
+import { calculateReadingTime } from '../../../lib/reading-time'
 
 export const revalidate = 3600
 
@@ -43,6 +44,8 @@ export default async function ReviewPage({ params }: Props) {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
+  const reviewUrl = `${siteUrl}/reviews/${review.slug}`
+  const readingTime = calculateReadingTime(review.body || '')
 
   const reviewJsonLd = generateReviewJsonLd({
     name: review.title,
@@ -94,12 +97,12 @@ export default async function ReviewPage({ params }: Props) {
           {review.excerpt && (
             <p className="mt-4 text-xl text-gray-600">{review.excerpt}</p>
           )}
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-gray-500">
             {review.author && (
-              <span className="text-sm text-gray-600">By {review.author.name}</span>
+              <span className="font-medium text-gray-700">{review.author.name}</span>
             )}
             {review.publishedAt && (
-              <span className="text-sm text-gray-500">
+              <span>
                 {new Date(review.publishedAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -107,6 +110,17 @@ export default async function ReviewPage({ params }: Props) {
                 })}
               </span>
             )}
+            {readingTime > 0 && (
+              <span className="flex items-center gap-1">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {readingTime} min read
+              </span>
+            )}
+          </div>
+          <div className="mt-4">
+            <ShareButtons url={reviewUrl} title={review.title} />
           </div>
         </header>
 
@@ -154,6 +168,17 @@ export default async function ReviewPage({ params }: Props) {
                   <p className="mt-2 text-blue-800">{review.verdict}</p>
                 </section>
               )}
+
+              {review.author && (
+                <section className="mt-12">
+                  <h2 className="mb-4 text-lg font-semibold text-gray-900">About the Reviewer</h2>
+                  <AuthorBio author={review.author} />
+                </section>
+              )}
+
+              <div className="mt-8 border-t border-gray-200 pt-8">
+                <ShareButtons url={reviewUrl} title={review.title} />
+              </div>
             </article>
 
             <aside className="space-y-6">

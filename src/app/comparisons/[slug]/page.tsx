@@ -3,8 +3,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
 import { getComparisonBySlug, getAllComparisons } from '../../../content'
-import { ComparisonTable, AffiliateButton } from '../../../components'
+import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons } from '../../../components'
 import { JsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
+import { calculateReadingTime } from '../../../lib/reading-time'
 
 export const revalidate = 3600
 
@@ -43,6 +44,8 @@ export default async function ComparisonPage({ params }: Props) {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
+  const comparisonUrl = `${siteUrl}/comparisons/${comparison.slug}`
+  const readingTime = calculateReadingTime(comparison.body || '')
 
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },
@@ -70,12 +73,12 @@ export default async function ComparisonPage({ params }: Props) {
           {comparison.excerpt && (
             <p className="mt-4 text-xl text-gray-600">{comparison.excerpt}</p>
           )}
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-gray-500">
             {comparison.author && (
-              <span className="text-sm text-gray-600">By {comparison.author.name}</span>
+              <span className="font-medium text-gray-700">{comparison.author.name}</span>
             )}
             {comparison.publishedAt && (
-              <span className="text-sm text-gray-500">
+              <span>
                 {new Date(comparison.publishedAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -83,6 +86,17 @@ export default async function ComparisonPage({ params }: Props) {
                 })}
               </span>
             )}
+            {readingTime > 0 && (
+              <span className="flex items-center gap-1">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {readingTime} min read
+              </span>
+            )}
+          </div>
+          <div className="mt-4">
+            <ShareButtons url={comparisonUrl} title={comparison.title} />
           </div>
         </header>
 
@@ -175,6 +189,17 @@ export default async function ComparisonPage({ params }: Props) {
               })}
             </article>
           )}
+
+          {comparison.author && (
+            <section className="mt-12 mx-auto max-w-4xl">
+              <h2 className="mb-4 text-lg font-semibold text-gray-900">About the Author</h2>
+              <AuthorBio author={comparison.author} />
+            </section>
+          )}
+
+          <div className="mt-8 mx-auto max-w-4xl border-t border-gray-200 pt-8">
+            <ShareButtons url={comparisonUrl} title={comparison.title} />
+          </div>
 
           <section className="mt-12">
             <h2 className="mb-6 text-2xl font-bold text-gray-900">Explore These Tools</h2>
