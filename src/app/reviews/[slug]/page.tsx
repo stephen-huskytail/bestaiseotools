@@ -4,10 +4,11 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { getReviewBySlug, getAllReviews } from '../../../content'
-import { AffiliateButton, RatingStars, AuthorBio, ShareButtons } from '../../../components'
+import { getReviewBySlug, getAllReviews, getRelatedReviews } from '../../../content'
+import { AffiliateButton, RatingStars, AuthorBio, ShareButtons, TableOfContents, RelatedReviews } from '../../../components'
 import { JsonLd, generateReviewJsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
+import { extractTocFromMarkdown } from '../../../lib/toc'
 
 export const revalidate = 3600
 
@@ -48,6 +49,8 @@ export default async function ReviewPage({ params }: Props) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
   const reviewUrl = `${siteUrl}/reviews/${review.slug}`
   const readingTime = calculateReadingTime(review.body || '')
+  const tocItems = extractTocFromMarkdown(review.body || '')
+  const relatedReviews = getRelatedReviews(slug, 3)
 
   const reviewJsonLd = generateReviewJsonLd({
     name: review.title,
@@ -112,6 +115,18 @@ export default async function ReviewPage({ params }: Props) {
                 })}
               </span>
             )}
+            {review.updatedAt && review.updatedAt !== review.publishedAt && (
+              <span className="flex items-center gap-1">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Updated {new Date(review.updatedAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </span>
+            )}
             {readingTime > 0 && (
               <span className="flex items-center gap-1">
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,9 +159,34 @@ export default async function ReviewPage({ params }: Props) {
         <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-3">
             <article className="lg:col-span-2">
+              {tocItems.length > 3 && (
+                <div className="mb-8">
+                  <TableOfContents items={tocItems} />
+                </div>
+              )}
+
               {review.body && (
                 <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      h2: ({ children }) => {
+                        const text = String(children)
+                        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+                        return <h2 id={id}>{children}</h2>
+                      },
+                      h3: ({ children }) => {
+                        const text = String(children)
+                        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+                        return <h3 id={id}>{children}</h3>
+                      },
+                      h4: ({ children }) => {
+                        const text = String(children)
+                        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+                        return <h4 id={id}>{children}</h4>
+                      },
+                    }}
+                  >
                     {review.body}
                   </ReactMarkdown>
                 </div>
@@ -216,6 +256,8 @@ export default async function ReviewPage({ params }: Props) {
               </Link>
             </aside>
           </div>
+
+          <RelatedReviews reviews={relatedReviews} />
         </div>
       </div>
     </>

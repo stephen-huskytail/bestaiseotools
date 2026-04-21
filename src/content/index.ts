@@ -28,6 +28,7 @@ export {
   getReviewBySlug,
   getAllReviews,
   getLatestReviews,
+  getRelatedReviews,
 } from './data/reviews'
 
 export {
@@ -35,6 +36,7 @@ export {
   getComparisonById,
   getComparisonBySlug,
   getAllComparisons,
+  getRelatedComparisons,
 } from './data/comparisons'
 
 export {

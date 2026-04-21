@@ -803,3 +803,20 @@ export function getAllComparisons(): Comparison[] {
     author: comparison.authorId ? getAuthorById(comparison.authorId) : undefined,
   }))
 }
+
+export function getRelatedComparisons(slug: string, limit: number = 3): Comparison[] {
+  const currentComparison = comparisons.find((c) => c.slug === slug)
+  if (!currentComparison) return []
+
+  const currentToolIds = new Set(currentComparison.toolIds)
+
+  return getAllComparisons()
+    .filter((c) => c.slug !== slug)
+    .map((c) => ({
+      comparison: c,
+      overlap: c.toolIds?.filter((id) => currentToolIds.has(id)).length || 0,
+    }))
+    .sort((a, b) => b.overlap - a.overlap)
+    .slice(0, limit)
+    .map((item) => item.comparison)
+}

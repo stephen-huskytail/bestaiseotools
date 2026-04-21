@@ -2,16 +2,30 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
 import { getAllComparisons } from '../../content'
+import { Pagination } from '../../components'
 
 export const revalidate = 3600
+
+const COMPARISONS_PER_PAGE = 6
 
 export const metadata: Metadata = {
   title: 'Tool Comparisons - Smart SEO Tools',
   description: 'Side-by-side comparisons of popular AI SEO tools to help you choose the best option.',
 }
 
-export default async function ComparisonsPage() {
-  const comparisons = getAllComparisons()
+interface Props {
+  searchParams: Promise<{ page?: string }>
+}
+
+export default async function ComparisonsPage({ searchParams }: Props) {
+  const params = await searchParams
+  const currentPage = Math.max(1, parseInt(params.page || '1', 10))
+  const allComparisons = getAllComparisons()
+  const totalPages = Math.ceil(allComparisons.length / COMPARISONS_PER_PAGE)
+  const comparisons = allComparisons.slice(
+    (currentPage - 1) * COMPARISONS_PER_PAGE,
+    currentPage * COMPARISONS_PER_PAGE
+  )
 
   return (
     <div className="bg-white">
@@ -102,6 +116,16 @@ export default async function ComparisonsPage() {
         ) : (
           <div className="py-12 text-center">
             <p className="text-gray-500">No comparisons yet. Check back soon!</p>
+          </div>
+        )}
+
+        {totalPages > 1 && (
+          <div className="mt-12">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              basePath="/comparisons"
+            />
           </div>
         )}
       </div>

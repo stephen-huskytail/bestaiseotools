@@ -4,10 +4,11 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { getComparisonBySlug, getAllComparisons } from '../../../content'
-import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons } from '../../../components'
+import { getComparisonBySlug, getAllComparisons, getRelatedComparisons } from '../../../content'
+import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons, TableOfContents, RelatedComparisons } from '../../../components'
 import { JsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
+import { extractTocFromMarkdown } from '../../../lib/toc'
 
 export const revalidate = 3600
 
@@ -48,6 +49,8 @@ export default async function ComparisonPage({ params }: Props) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
   const comparisonUrl = `${siteUrl}/comparisons/${comparison.slug}`
   const readingTime = calculateReadingTime(comparison.body || '')
+  const tocItems = extractTocFromMarkdown(comparison.body || '')
+  const relatedComparisons = getRelatedComparisons(slug, 3)
 
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },
@@ -82,6 +85,18 @@ export default async function ComparisonPage({ params }: Props) {
             {comparison.publishedAt && (
               <span>
                 {new Date(comparison.publishedAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </span>
+            )}
+            {comparison.updatedAt && comparison.updatedAt !== comparison.publishedAt && (
+              <span className="flex items-center gap-1">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Updated {new Date(comparison.updatedAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
@@ -169,9 +184,34 @@ export default async function ComparisonPage({ params }: Props) {
             </section>
           )}
 
+          {tocItems.length > 3 && (
+            <div className="mx-auto max-w-4xl mb-8">
+              <TableOfContents items={tocItems} />
+            </div>
+          )}
+
           {comparison.body && (
             <article className="prose prose-lg mx-auto max-w-4xl prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  h2: ({ children }) => {
+                    const text = String(children)
+                    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+                    return <h2 id={id}>{children}</h2>
+                  },
+                  h3: ({ children }) => {
+                    const text = String(children)
+                    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+                    return <h3 id={id}>{children}</h3>
+                  },
+                  h4: ({ children }) => {
+                    const text = String(children)
+                    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+                    return <h4 id={id}>{children}</h4>
+                  },
+                }}
+              >
                 {comparison.body}
               </ReactMarkdown>
             </article>
@@ -216,6 +256,8 @@ export default async function ComparisonPage({ params }: Props) {
               ))}
             </div>
           </section>
+
+          <RelatedComparisons comparisons={relatedComparisons} />
         </div>
       </div>
     </>

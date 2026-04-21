@@ -65,6 +65,7 @@ export interface Review {
   verdict?: string
   featuredImage?: string
   publishedAt?: string
+  updatedAt?: string
 }
 
 export interface Comparison {
@@ -86,6 +87,7 @@ export interface Comparison {
   author?: Author
   featuredImage?: string
   publishedAt?: string
+  updatedAt?: string
 }
 
 export interface FAQ {
@@ -108,4 +110,5 @@ export interface Post {
   relatedToolIds?: string[]
   relatedTools?: Tool[]
   publishedAt?: string
+  updatedAt?: string
 }

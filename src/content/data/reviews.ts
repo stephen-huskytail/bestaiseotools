@@ -1163,3 +1163,12 @@ export function getLatestReviews(limit: number = 3): Review[] {
     .sort((a, b) => new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime())
     .slice(0, limit)
 }
+
+export function getRelatedReviews(slug: string, limit: number = 3): Review[] {
+  const currentReview = reviews.find((r) => r.slug === slug)
+  if (!currentReview) return []
+
+  return getAllReviews()
+    .filter((r) => r.slug !== slug)
+    .slice(0, limit)
+}

@@ -2,17 +2,30 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
 import { getAllReviews } from '../../content'
-import { RatingStars } from '../../components'
+import { RatingStars, Pagination } from '../../components'
 
 export const revalidate = 3600
+
+const REVIEWS_PER_PAGE = 9
 
 export const metadata: Metadata = {
   title: 'Tool Reviews - Smart SEO Tools',
   description: 'In-depth reviews of the best AI SEO tools to help you make informed decisions.',
 }
 
-export default async function ReviewsPage() {
-  const reviews = getAllReviews()
+interface Props {
+  searchParams: Promise<{ page?: string }>
+}
+
+export default async function ReviewsPage({ searchParams }: Props) {
+  const params = await searchParams
+  const currentPage = Math.max(1, parseInt(params.page || '1', 10))
+  const allReviews = getAllReviews()
+  const totalPages = Math.ceil(allReviews.length / REVIEWS_PER_PAGE)
+  const reviews = allReviews.slice(
+    (currentPage - 1) * REVIEWS_PER_PAGE,
+    currentPage * REVIEWS_PER_PAGE
+  )
 
   return (
     <div className="bg-white">
@@ -90,6 +103,16 @@ export default async function ReviewsPage() {
         ) : (
           <div className="py-12 text-center">
             <p className="text-gray-500">No reviews yet. Check back soon!</p>
+          </div>
+        )}
+
+        {totalPages > 1 && (
+          <div className="mt-12">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              basePath="/reviews"
+            />
           </div>
         )}
       </div>
