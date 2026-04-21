@@ -138,6 +138,7 @@ export default async function ToolPage({ params }: Props) {
               <AffiliateButton
                 href={tool.affiliateLink}
                 toolName={tool.name}
+                articleType="tool"
                 size="lg"
               >
                 Try {tool.name} Free
@@ -220,6 +221,7 @@ export default async function ToolPage({ params }: Props) {
                   <AffiliateButton
                     href={tool.affiliateLink}
                     toolName={tool.name}
+                    articleType="tool"
                     className="mt-4 w-full"
                   />
                 </div>

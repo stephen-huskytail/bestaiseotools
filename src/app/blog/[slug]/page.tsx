@@ -219,6 +219,7 @@ export default async function BlogPostPage({ params }: Props) {
                       <AffiliateButton
                         href={tool.affiliateLink}
                         toolName={tool.name}
+                        articleType="blog"
                         size="sm"
                         variant="secondary"
                       >

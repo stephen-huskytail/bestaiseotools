@@ -157,6 +157,7 @@ export default async function ComparisonPage({ params }: Props) {
                 tools={comparison.tools}
                 criteria={comparison.comparisonTable}
                 winner={comparison.winner}
+                comparisonSlug={comparison.slug.current}
               />
             </section>
           )}
@@ -185,6 +186,7 @@ export default async function ComparisonPage({ params }: Props) {
                     <AffiliateButton
                       href={comparison.winner.affiliateLink}
                       toolName={comparison.winner.name}
+                      articleType="comparison"
                       size="lg"
                     />
                   </div>

@@ -223,6 +223,7 @@ export default async function ReviewPage({ params }: Props) {
                   <AffiliateButton
                     href={review.tool.affiliateLink}
                     toolName={review.tool.name}
+                    articleType="review"
                     className="mt-6 w-full"
                   />
                 )}
