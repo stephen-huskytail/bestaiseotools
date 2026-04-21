@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { getComparisonBySlug, getAllComparisons } from '../../../content'
 import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons } from '../../../components'
 import { JsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
@@ -168,25 +170,10 @@ export default async function ComparisonPage({ params }: Props) {
           )}
 
           {comparison.body && (
-            <article className="prose prose-lg mx-auto max-w-4xl">
-              {comparison.body.split('\n').map((paragraph, index) => {
-                if (paragraph.startsWith('## ')) {
-                  return <h2 key={index}>{paragraph.slice(3)}</h2>
-                }
-                if (paragraph.startsWith('### ')) {
-                  return <h3 key={index}>{paragraph.slice(4)}</h3>
-                }
-                if (paragraph.startsWith('- ')) {
-                  return <li key={index}>{paragraph.slice(2)}</li>
-                }
-                if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                  return <p key={index}><strong>{paragraph.slice(2, -2)}</strong></p>
-                }
-                if (paragraph.trim()) {
-                  return <p key={index}>{paragraph}</p>
-                }
-                return null
-              })}
+            <article className="prose prose-lg mx-auto max-w-4xl prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {comparison.body}
+              </ReactMarkdown>
             </article>
           )}
 

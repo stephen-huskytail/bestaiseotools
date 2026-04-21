@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { getReviewBySlug, getAllReviews } from '../../../content'
 import { AffiliateButton, RatingStars, AuthorBio, ShareButtons } from '../../../components'
 import { JsonLd, generateReviewJsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
@@ -143,22 +145,10 @@ export default async function ReviewPage({ params }: Props) {
           <div className="grid gap-8 lg:grid-cols-3">
             <article className="lg:col-span-2">
               {review.body && (
-                <div className="prose prose-lg max-w-none">
-                  {review.body.split('\n').map((paragraph, index) => {
-                    if (paragraph.startsWith('## ')) {
-                      return <h2 key={index}>{paragraph.slice(3)}</h2>
-                    }
-                    if (paragraph.startsWith('### ')) {
-                      return <h3 key={index}>{paragraph.slice(4)}</h3>
-                    }
-                    if (paragraph.startsWith('- ')) {
-                      return <li key={index}>{paragraph.slice(2)}</li>
-                    }
-                    if (paragraph.trim()) {
-                      return <p key={index}>{paragraph}</p>
-                    }
-                    return null
-                  })}
+                <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {review.body}
+                  </ReactMarkdown>
                 </div>
               )}
 
