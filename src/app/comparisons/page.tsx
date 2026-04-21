@@ -34,7 +34,7 @@ export default async function ComparisonsPage() {
               >
                 {comparison.featuredImage && (
                   <Link href={`/comparisons/${comparison.slug}`} className="block md:w-72 shrink-0">
-                    <div className="relative aspect-[16/9] md:h-full overflow-hidden">
+                    <div className="relative aspect-[16/9] md:h-full overflow-hidden rounded-t-xl md:rounded-t-none md:rounded-l-xl">
                       <Image
                         src={comparison.featuredImage}
                         alt={comparison.title}
