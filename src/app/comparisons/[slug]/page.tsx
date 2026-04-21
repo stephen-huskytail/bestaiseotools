@@ -4,10 +4,11 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 import { getComparisonBySlug, getAllComparisons, getRelatedComparisons } from '../../../content'
 import { markdownToHtml } from '../../../lib/markdown'
-import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons, TableOfContents, RelatedComparisons } from '../../../components'
-import { JsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
+import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons, StickyTableOfContents, RelatedComparisons, WinnerCalloutCompact, MidArticleCTA, FAQAccordion } from '../../../components'
+import { JsonLd, generateBreadcrumbJsonLd, generateFAQJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
 import { extractTocFromMarkdown } from '../../../lib/toc'
+import { extractFaqsFromMarkdown, countWords } from '../../../lib/faq'
 
 export const revalidate = 3600
 
@@ -52,15 +53,26 @@ export default async function ComparisonPage({ params }: Props) {
   const relatedComparisons = getRelatedComparisons(slug, 3)
   const bodyHtml = comparison.body ? await markdownToHtml(comparison.body) : ''
 
+  const wordCount = countWords(comparison.body || '')
+  const h2Count = tocItems.filter((item) => item.level === 2).length
+  const showToc = wordCount >= 1500 || h2Count >= 3
+
+  const faqs = comparison.faqs || extractFaqsFromMarkdown(comparison.body || '')
+
+  const otherTool = comparison.tools?.find((t) => t.id !== comparison.winnerId)
+
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },
     { name: 'Comparisons', url: `${siteUrl}/comparisons` },
     { name: comparison.title, url: `${siteUrl}/comparisons/${comparison.slug}` },
   ])
 
+  const faqJsonLd = faqs.length > 0 ? generateFAQJsonLd({ items: faqs }) : null
+
   return (
     <>
       <JsonLd data={breadcrumbJsonLd} />
+      {faqJsonLd && <JsonLd data={faqJsonLd} />}
 
       <div className="bg-white">
         <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
@@ -116,6 +128,26 @@ export default async function ComparisonPage({ params }: Props) {
             <ShareButtons url={comparisonUrl} title={comparison.title} />
           </div>
         </header>
+
+        {comparison.winner && (
+          <div className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+            <WinnerCalloutCompact
+              winner={{
+                name: comparison.winner.name,
+                affiliateLink: comparison.winner.affiliateLink,
+                logo: comparison.winner.logo,
+              }}
+              verdict={comparison.winnerReason || `${comparison.winner.name} is our recommended choice for most users.`}
+              bullets={comparison.winnerBullets}
+              chooseOtherIf={comparison.chooseOtherIf}
+              otherTool={otherTool ? {
+                name: otherTool.name,
+                affiliateLink: otherTool.affiliateLink,
+              } : undefined}
+              comparisonSlug={comparison.slug}
+            />
+          </div>
+        )}
 
         {comparison.featuredImage && (
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -184,18 +216,44 @@ export default async function ComparisonPage({ params }: Props) {
             </section>
           )}
 
-          {tocItems.length > 3 && (
-            <div className="mx-auto max-w-4xl mb-8">
-              <TableOfContents items={tocItems} />
-            </div>
-          )}
+          <div className="flex flex-col lg:flex-row lg:gap-8">
+            {showToc && (
+              <aside className="mb-8 lg:mb-0 lg:w-64 lg:flex-shrink-0">
+                <StickyTableOfContents items={tocItems} />
+              </aside>
+            )}
 
-          {bodyHtml && (
-            <article
-              className="prose mx-auto max-w-4xl prose-headings:font-bold prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
-              dangerouslySetInnerHTML={{ __html: bodyHtml }}
-            />
-          )}
+            <div className="flex-1">
+              {bodyHtml && (
+                <article
+                  className="prose max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
+                  dangerouslySetInnerHTML={{ __html: bodyHtml }}
+                />
+              )}
+
+              {comparison.tools && comparison.tools.length > 0 && (
+                <MidArticleCTA
+                  tools={comparison.tools.map(t => ({ name: t.name, affiliateLink: t.affiliateLink }))}
+                  winner={comparison.winner ? { name: comparison.winner.name, affiliateLink: comparison.winner.affiliateLink } : undefined}
+                  className="my-8"
+                />
+              )}
+
+              {faqs.length > 0 && (
+                <section className="mt-12" id="faq">
+                  <h2 className="mb-6 text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
+                  <FAQAccordion items={faqs} />
+                  {comparison.tools && comparison.tools.length > 0 && (
+                    <MidArticleCTA
+                      tools={comparison.tools.map(t => ({ name: t.name, affiliateLink: t.affiliateLink }))}
+                      winner={comparison.winner ? { name: comparison.winner.name, affiliateLink: comparison.winner.affiliateLink } : undefined}
+                      className="mt-8"
+                    />
+                  )}
+                </section>
+              )}
+            </div>
+          </div>
 
           {comparison.author && (
             <section className="mt-12 mx-auto max-w-4xl">
@@ -209,7 +267,8 @@ export default async function ComparisonPage({ params }: Props) {
           </div>
 
           <section className="mt-12">
-            <h2 className="mb-6 text-2xl font-bold text-gray-900">Explore These Tools</h2>
+            <h2 className="mb-2 text-2xl font-bold text-gray-900">Individual Tool Reviews</h2>
+            <p className="mb-6 text-gray-600">Read our in-depth standalone reviews to learn more about each tool.</p>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {comparison.tools?.map((tool) => (
                 <Link

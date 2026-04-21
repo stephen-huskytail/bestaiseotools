@@ -79,10 +79,14 @@ export interface Comparison {
   comparisonTable?: {
     criterion: string
     description?: string
+    winnerId?: string | 'tie'
   }[]
   winnerId?: string
   winner?: Tool
   winnerReason?: string
+  winnerBullets?: string[]
+  chooseOtherIf?: string
+  faqs?: FAQ[]
   authorId?: string
   author?: Author
   featuredImage?: string
