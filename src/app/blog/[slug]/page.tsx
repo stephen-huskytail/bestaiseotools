@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { getPostBySlug, getAllPosts } from '../../../content'
 import { FAQAccordion, AffiliateButton } from '../../../components'
 import {
@@ -119,22 +121,10 @@ export default async function BlogPostPage({ params }: Props) {
 
         <article className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
           {post.body && (
-            <div className="prose prose-lg max-w-none">
-              {post.body.split('\n').map((paragraph, index) => {
-                if (paragraph.startsWith('## ')) {
-                  return <h2 key={index}>{paragraph.slice(3)}</h2>
-                }
-                if (paragraph.startsWith('### ')) {
-                  return <h3 key={index}>{paragraph.slice(4)}</h3>
-                }
-                if (paragraph.startsWith('- ')) {
-                  return <li key={index}>{paragraph.slice(2)}</li>
-                }
-                if (paragraph.trim()) {
-                  return <p key={index}>{paragraph}</p>
-                }
-                return null
-              })}
+            <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {post.body}
+              </ReactMarkdown>
             </div>
           )}
 
