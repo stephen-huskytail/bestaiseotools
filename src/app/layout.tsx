@@ -9,10 +9,27 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Smart SEO Tools - Discover the Top AI-Powered SEO Tools",
   description:
     "Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.",
+  alternates: {
+    canonical: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Smart SEO Tools - Discover the Top AI-Powered SEO Tools',
+    description: 'Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'Smart SEO Tools',
+    title: 'Smart SEO Tools - Discover the Top AI-Powered SEO Tools',
+    description: 'Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.',
+  },
 };
 
 export default function RootLayout({

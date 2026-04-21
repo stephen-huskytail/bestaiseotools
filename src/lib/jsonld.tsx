@@ -179,6 +179,40 @@ export function generateArticleJsonLd(props: ArticleJsonLdProps) {
   }
 }
 
+interface ItemListJsonLdProps {
+  name: string
+  description?: string
+  items: Array<{
+    name: string
+    url: string
+    position: number
+    image?: string
+    description?: string
+  }>
+}
+
+export function generateItemListJsonLd(props: ItemListJsonLdProps) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: props.name,
+    description: props.description,
+    numberOfItems: props.items.length,
+    itemListElement: props.items.map((item) => ({
+      '@type': 'ListItem',
+      position: item.position,
+      item: {
+        '@type': 'SoftwareApplication',
+        name: item.name,
+        url: item.url,
+        image: item.image,
+        description: item.description,
+        applicationCategory: 'BusinessApplication',
+      },
+    })),
+  }
+}
+
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script

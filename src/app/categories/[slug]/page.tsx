@@ -21,13 +21,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getCategoryBySlug(slug)
   if (!category) return {}
 
+  const description = category.description || `Discover the best ${category.name} tools for your SEO needs.`
+
   return {
     title: `Best ${category.name} Tools - Smart SEO Tools`,
-    description: category.description || `Discover the best ${category.name} tools for your SEO needs.`,
+    description,
+    alternates: {
+      canonical: `/categories/${slug}`,
+    },
     openGraph: {
       title: `Best ${category.name} Tools`,
-      description: category.description,
+      description,
       type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Best ${category.name} Tools`,
+      description,
     },
   }
 }

@@ -7,6 +7,14 @@ export const revalidate = 3600
 export const metadata: Metadata = {
   title: 'Categories - Smart SEO Tools',
   description: 'Browse AI SEO tools by category to find the perfect solution for your needs.',
+  alternates: {
+    canonical: '/categories',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Categories - Smart SEO Tools',
+    description: 'Browse AI SEO tools by category to find the perfect solution for your needs.',
+  },
 }
 
 export default async function CategoriesPage() {

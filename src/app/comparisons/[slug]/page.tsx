@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import { getComparisonBySlug, getAllComparisons, getRelatedComparisons } from '../../../content'
 import { markdownToHtml } from '../../../lib/markdown'
 import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons, TableOfContents, RelatedComparisons } from '../../../components'
-import { JsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
+import { JsonLd, generateBreadcrumbJsonLd, generateArticleJsonLd, generateItemListJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
 import { extractTocFromMarkdown } from '../../../lib/toc'
 
@@ -28,11 +28,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${comparison.title} - Smart SEO Tools`,
     description: comparison.excerpt,
+    alternates: {
+      canonical: `/comparisons/${slug}`,
+    },
     openGraph: {
       title: comparison.title,
       description: comparison.excerpt,
       type: 'article',
       images: comparison.featuredImage ? [{ url: comparison.featuredImage }] : undefined,
+      publishedTime: comparison.publishedAt,
+      modifiedTime: comparison.updatedAt || comparison.publishedAt,
+      authors: comparison.author?.name ? [comparison.author.name] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: comparison.title,
+      description: comparison.excerpt,
+      images: comparison.featuredImage ? [comparison.featuredImage] : undefined,
     },
   }
 }
@@ -58,8 +70,38 @@ export default async function ComparisonPage({ params }: Props) {
     { name: comparison.title, url: `${siteUrl}/comparisons/${comparison.slug}` },
   ])
 
+  const articleJsonLd = generateArticleJsonLd({
+    headline: comparison.title,
+    description: comparison.excerpt,
+    image: comparison.featuredImage,
+    datePublished: comparison.publishedAt,
+    dateModified: comparison.updatedAt || comparison.publishedAt,
+    author: {
+      name: comparison.author?.name || 'SmartSEOTools Team',
+    },
+    publisher: {
+      name: 'Smart SEO Tools',
+      logo: `${siteUrl}/logo.png`,
+    },
+  })
+
+  const itemListJsonLd = comparison.tools && comparison.tools.length > 0
+    ? generateItemListJsonLd({
+        name: comparison.title,
+        description: comparison.excerpt,
+        items: comparison.tools.map((tool, index) => ({
+          name: tool.name,
+          url: `${siteUrl}/tools/${tool.slug}`,
+          position: index + 1,
+          description: tool.description,
+        })),
+      })
+    : null
+
   return (
     <>
+      <JsonLd data={articleJsonLd} />
+      {itemListJsonLd && <JsonLd data={itemListJsonLd} />}
       <JsonLd data={breadcrumbJsonLd} />
 
       <div className="bg-white">

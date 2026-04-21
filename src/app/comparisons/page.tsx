@@ -11,6 +11,14 @@ const COMPARISONS_PER_PAGE = 6
 export const metadata: Metadata = {
   title: 'Tool Comparisons - Smart SEO Tools',
   description: 'Side-by-side comparisons of popular AI SEO tools to help you choose the best option.',
+  alternates: {
+    canonical: '/comparisons',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tool Comparisons - Smart SEO Tools',
+    description: 'Side-by-side comparisons of popular AI SEO tools to help you choose the best option.',
+  },
 }
 
 interface Props {
@@ -100,7 +108,7 @@ export default async function ComparisonsPage({ searchParams }: Props) {
                       <span className="text-gray-500">{comparison.author.name}</span>
                     )}
                     {comparison.publishedAt && (
-                      <span className="text-gray-400">
+                      <span className="text-gray-500">
                         {new Date(comparison.publishedAt).toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric',
