@@ -45,14 +45,14 @@ export default async function BlogPostPage({ params }: Props) {
     notFound()
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bestaiseotools.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
 
   const articleJsonLd = generateArticleJsonLd({
     headline: post.title,
     description: post.excerpt,
     datePublished: post.publishedAt,
     author: {
-      name: post.author?.name || 'BestAISEOTools Team',
+      name: post.author?.name || 'SmartSEOTools Team',
     },
     publisher: {
       name: 'Best AI SEO Tools',

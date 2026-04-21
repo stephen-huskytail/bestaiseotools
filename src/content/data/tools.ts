@@ -9,7 +9,7 @@ export const tools: Tool[] = [
     description: 'AI-powered content optimization platform that helps you write content that ranks.',
     longDescription: 'Surfer SEO analyzes top-ranking pages and provides data-driven recommendations to optimize your content for search engines. Features include content editor, SERP analyzer, and keyword research.',
     website: 'https://surferseo.com',
-    affiliateLink: 'https://surferseo.com?ref=bestaiseotools',
+    affiliateLink: 'https://surferseo.com?ref=smartseotools',
     categoryId: 'cat-ai-writing',
     pricing: {
       hasFree: false,
@@ -30,7 +30,7 @@ export const tools: Tool[] = [
     description: 'AI writing assistant that helps create high-quality content at scale.',
     longDescription: 'Jasper AI uses advanced language models to help you write blog posts, ads, emails, and more. Perfect for content teams looking to scale their output.',
     website: 'https://jasper.ai',
-    affiliateLink: 'https://jasper.ai?ref=bestaiseotools',
+    affiliateLink: 'https://jasper.ai?ref=smartseotools',
     categoryId: 'cat-ai-writing',
     pricing: {
       hasFree: true,
@@ -51,7 +51,7 @@ export const tools: Tool[] = [
     description: 'Comprehensive SEO toolset for keyword research, competitor analysis, and link building.',
     longDescription: 'Ahrefs is an all-in-one SEO platform with one of the largest backlink databases. Essential for serious SEO professionals.',
     website: 'https://ahrefs.com',
-    affiliateLink: 'https://ahrefs.com?ref=bestaiseotools',
+    affiliateLink: 'https://ahrefs.com?ref=smartseotools',
     categoryId: 'cat-keyword-research',
     pricing: {
       hasFree: false,
@@ -72,7 +72,7 @@ export const tools: Tool[] = [
     description: 'All-in-one marketing toolkit for SEO, PPC, content, and competitive research.',
     longDescription: 'Semrush offers over 50 tools for SEO, content marketing, competitor research, PPC, and social media marketing.',
     website: 'https://semrush.com',
-    affiliateLink: 'https://semrush.com?ref=bestaiseotools',
+    affiliateLink: 'https://semrush.com?ref=smartseotools',
     categoryId: 'cat-keyword-research',
     pricing: {
       hasFree: true,
@@ -113,7 +113,7 @@ export const tools: Tool[] = [
     description: 'AI-powered content research and optimization platform for SEO-driven content creation.',
     longDescription: 'Frase helps you research, write, and optimize SEO content faster. It analyzes top-ranking content, generates briefs, and provides AI writing assistance with built-in optimization scoring.',
     website: 'https://www.frase.io',
-    affiliateLink: 'https://www.frase.io?fpr=bestaiseotools',
+    affiliateLink: 'https://www.frase.io?fpr=smartseotools',
     categoryId: 'cat-content-optimization',
     pricing: {
       hasFree: false,
@@ -134,7 +134,7 @@ export const tools: Tool[] = [
     description: 'Enterprise content optimization platform for creating high-ranking, discoverable content.',
     longDescription: 'Clearscope is a premium content optimization tool that helps teams create content optimized for both Google search and AI platforms like ChatGPT. Features deep SERP analysis, content grading, and team collaboration.',
     website: 'https://www.clearscope.io',
-    affiliateLink: 'https://www.clearscope.io?ref=bestaiseotools',
+    affiliateLink: 'https://www.clearscope.io?ref=smartseotools',
     categoryId: 'cat-content-optimization',
     pricing: {
       hasFree: false,
@@ -155,7 +155,7 @@ export const tools: Tool[] = [
     description: 'Affordable AI content editor with semantic SEO optimization and NLP analysis.',
     longDescription: 'NeuronWriter combines AI writing with advanced semantic SEO analysis. It uses Google NLP and competitor analysis to help you create optimized content at a fraction of the cost of premium tools.',
     website: 'https://neuronwriter.com',
-    affiliateLink: 'https://neuronwriter.com?ref=bestaiseotools',
+    affiliateLink: 'https://neuronwriter.com?ref=smartseotools',
     categoryId: 'cat-content-optimization',
     pricing: {
       hasFree: false,
@@ -176,7 +176,7 @@ export const tools: Tool[] = [
     description: 'AI article writer designed for SEO-optimized long-form content at scale.',
     longDescription: 'Koala AI specializes in generating full-length, SEO-optimized articles with real-time SERP data. It creates content with proper structure, internal links, and images included.',
     website: 'https://koala.sh',
-    affiliateLink: 'https://koala.sh?ref=bestaiseotools',
+    affiliateLink: 'https://koala.sh?ref=smartseotools',
     categoryId: 'cat-ai-writing',
     pricing: {
       hasFree: false,
@@ -197,7 +197,7 @@ export const tools: Tool[] = [
     description: 'AI copywriting platform for marketing copy, social media, and content ideation.',
     longDescription: 'Copy.ai offers a suite of AI writing tools for marketing teams. Create blog posts, social media content, ad copy, and more with templates designed for different use cases.',
     website: 'https://www.copy.ai',
-    affiliateLink: 'https://www.copy.ai?via=bestaiseotools',
+    affiliateLink: 'https://www.copy.ai?via=smartseotools',
     categoryId: 'cat-ai-writing',
     pricing: {
       hasFree: true,
@@ -218,7 +218,7 @@ export const tools: Tool[] = [
     description: 'AI content intelligence platform for content strategy and optimization at scale.',
     longDescription: 'MarketMuse uses AI to analyze your entire content library, identify gaps, and provide strategic recommendations. Best for enterprise teams with large content operations.',
     website: 'https://www.marketmuse.com',
-    affiliateLink: 'https://www.marketmuse.com?ref=bestaiseotools',
+    affiliateLink: 'https://www.marketmuse.com?ref=smartseotools',
     categoryId: 'cat-content-optimization',
     pricing: {
       hasFree: true,

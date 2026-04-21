@@ -7,7 +7,7 @@ import {
   getAllCategories,
 } from '../content'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bestaiseotools.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const tools = getAllTools()

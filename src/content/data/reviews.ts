@@ -130,7 +130,7 @@ At $49/month, it is the sweet spot between free tools that lack depth and premiu
 
 The main limitation is volume—4 articles/month on the Starter plan is restrictive. Plan to upgrade to Professional ($129) if you publish regularly.
 
-[Try Frase with a 7-day free trial →](https://www.frase.io?fpr=bestaiseotools)`,
+[Try Frase with a 7-day free trial →](https://www.frase.io?fpr=smartseotools)`,
     ratings: {
       features: 4.0,
       easeOfUse: 4.5,
@@ -324,7 +324,7 @@ It is not a replacement for human expertise—every article needs editing. But a
 
 **Recommendation:** Start with the Essentials plan ($9). Use it for supplementary content and see if it fits your workflow before scaling up.
 
-[Try Koala AI →](https://koala.sh?ref=bestaiseotools)`,
+[Try Koala AI →](https://koala.sh?ref=smartseotools)`,
     ratings: {
       features: 4.0,
       easeOfUse: 4.8,

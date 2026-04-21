@@ -175,7 +175,7 @@ For most users, Surfer SEO delivers better value. You get comparable optimizatio
 
 Clearscope remains excellent for enterprise teams where unlimited users and cleaner workflow justify the premium price. But for the majority of content creators, Surfer is the smarter choice.
 
-[Try Surfer SEO →](https://surferseo.com?ref=bestaiseotools) | [Try Clearscope →](https://www.clearscope.io?ref=bestaiseotools)`,
+[Try Surfer SEO →](https://surferseo.com?ref=smartseotools) | [Try Clearscope →](https://www.clearscope.io?ref=smartseotools)`,
     comparisonTable: [
       { criterion: 'Pricing', description: 'Monthly cost and value for money' },
       { criterion: 'Content Editor', description: 'Quality of optimization recommendations' },
@@ -396,7 +396,7 @@ Despite costing double, Frase's research tools save enough time to justify the p
 
 If you optimize 10+ articles monthly, NeuronWriter's credit system is more generous. You get more optimization runs per dollar.
 
-[Try NeuronWriter →](https://neuronwriter.com?ref=bestaiseotools) | [Try Frase →](https://www.frase.io?fpr=bestaiseotools)`,
+[Try NeuronWriter →](https://neuronwriter.com?ref=smartseotools) | [Try Frase →](https://www.frase.io?fpr=smartseotools)`,
     comparisonTable: [
       { criterion: 'Pricing', description: 'Monthly cost and value' },
       { criterion: 'Content Optimization', description: 'Quality of recommendations' },

@@ -1,4 +1,4 @@
-# BestAISEOTools.com
+# SmartSEOTools.ai
 
 Next.js + Sanity CMS affiliate site for AI SEO tools.
 

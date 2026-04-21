@@ -40,7 +40,7 @@ export default async function ReviewPage({ params }: Props) {
     notFound()
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bestaiseotools.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
 
   const reviewJsonLd = generateReviewJsonLd({
     name: review.title,
@@ -53,7 +53,7 @@ export default async function ReviewPage({ params }: Props) {
       ratingValue: review.ratings?.overall || 0,
     },
     author: {
-      name: review.author?.name || 'BestAISEOTools Team',
+      name: review.author?.name || 'SmartSEOTools Team',
     },
     datePublished: review.publishedAt,
   })

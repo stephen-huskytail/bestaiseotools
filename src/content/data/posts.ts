@@ -62,7 +62,7 @@ I used Surfer to optimize an existing article that was stuck on page 2. Within 3
 - **Pro:** $119/mo – 30 articles/month
 - **Business:** $219/mo – 70 articles/month
 
-[Try Surfer SEO →](https://surferseo.com?ref=bestaiseotools)
+[Try Surfer SEO →](https://surferseo.com?ref=smartseotools)
 
 ---
 
@@ -88,7 +88,7 @@ Jasper is great for first drafts, but don't hit publish without editing. The con
 - Agencies that need consistent brand voice across clients
 - Anyone spending 10+ hours/week on content creation
 
-[Try Jasper AI →](https://jasper.ai?ref=bestaiseotools)
+[Try Jasper AI →](https://jasper.ai?ref=smartseotools)
 
 ---
 
@@ -116,7 +116,7 @@ You don't need Clearscope if:
 - Budget is tight
 - You publish < 10 articles/month (try Frase instead)
 
-[Try Clearscope →](https://www.clearscope.io?ref=bestaiseotools)
+[Try Clearscope →](https://www.clearscope.io?ref=smartseotools)
 
 ---
 
@@ -142,7 +142,7 @@ Frase's AI writing is decent but not exceptional. I use it for generating sectio
 - Anyone who values research over pure writing
 - Budget-conscious marketers who need optimization features
 
-[Try Frase →](https://www.frase.io?fpr=bestaiseotools)
+[Try Frase →](https://www.frase.io?fpr=smartseotools)
 
 ---
 
@@ -168,7 +168,7 @@ The interface is functional but cluttered. There's a learning curve. And the ana
 - Anyone producing 5-15 articles/month
 - International SEOs (good language support)
 
-[Try NeuronWriter →](https://neuronwriter.com?ref=bestaiseotools)
+[Try NeuronWriter →](https://neuronwriter.com?ref=smartseotools)
 
 ---
 
@@ -198,7 +198,7 @@ The output quality surprised me. It's not perfect—you still need to edit—but
 
 Koala is great for getting words on the page, but you'll want to run the output through a tool like Surfer for optimization. The articles are structured well but don't have the same optimization depth as dedicated tools.
 
-[Try Koala AI →](https://koala.sh?ref=bestaiseotools)
+[Try Koala AI →](https://koala.sh?ref=smartseotools)
 
 ---
 
@@ -224,7 +224,7 @@ The backlink database is unmatched. The keyword difficulty scores are the most a
 - Anyone building backlinks systematically
 - Sites where keyword research drives strategy
 
-[Try Ahrefs →](https://ahrefs.com?ref=bestaiseotools)
+[Try Ahrefs →](https://ahrefs.com?ref=smartseotools)
 
 ---
 
@@ -250,7 +250,7 @@ Semrush can feel overwhelming. There are 50+ tools, and most users only need 10.
 - Agencies with diverse client needs
 - Anyone who values breadth over depth
 
-[Try Semrush →](https://semrush.com?ref=bestaiseotools)
+[Try Semrush →](https://semrush.com?ref=smartseotools)
 
 ---
 

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bestaiseotools.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
 const SITE_NAME = 'Best AI SEO Tools'
 
 interface SeoConfig {

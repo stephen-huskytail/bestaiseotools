@@ -40,7 +40,7 @@ export default async function ToolPage({ params }: Props) {
     notFound()
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bestaiseotools.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
 
   const productJsonLd = generateProductJsonLd({
     name: tool.name,
