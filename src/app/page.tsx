@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { client, urlFor } from '../../sanity/lib/client'
-import { featuredToolsQuery, categoriesQuery } from '../../sanity/lib/queries'
+import { featuredToolsQuery, categoriesQuery, latestReviewsQuery } from '../../sanity/lib/queries'
+import { RatingStars } from '../components'
 
 export const revalidate = 3600
 
@@ -23,6 +24,16 @@ interface Category {
   description?: string
 }
 
+interface Review {
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt?: string
+  tool?: { _id: string; name: string; slug: { current: string }; logo?: { asset: { _ref: string } } }
+  ratings?: { overall?: number }
+  publishedAt?: string
+}
+
 async function getFeaturedTools(): Promise<Tool[]> {
   try {
     return await client.fetch(featuredToolsQuery)
@@ -39,10 +50,19 @@ async function getCategories(): Promise<Category[]> {
   }
 }
 
+async function getLatestReviews(): Promise<Review[]> {
+  try {
+    return await client.fetch(latestReviewsQuery)
+  } catch {
+    return []
+  }
+}
+
 export default async function Home() {
-  const [featuredTools, categories] = await Promise.all([
+  const [featuredTools, categories, latestReviews] = await Promise.all([
     getFeaturedTools(),
     getCategories(),
+    getLatestReviews(),
   ])
 
   return (
@@ -138,6 +158,54 @@ export default async function Home() {
                     <p className="mt-1 text-sm text-gray-500 line-clamp-2">
                       {category.description}
                     </p>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {latestReviews.length > 0 && (
+        <section className="py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-gray-900">Latest Reviews</h2>
+              <Link href="/reviews" className="text-sm font-medium text-blue-600 hover:underline">
+                View all reviews →
+              </Link>
+            </div>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {latestReviews.map((review) => (
+                <Link
+                  key={review._id}
+                  href={`/reviews/${review.slug.current}`}
+                  className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+                >
+                  {review.tool && (
+                    <div className="flex items-center gap-3">
+                      {review.tool.logo && (
+                        <Image
+                          src={urlFor(review.tool.logo).width(40).height(40).url()}
+                          alt={review.tool.name}
+                          width={40}
+                          height={40}
+                          className="rounded-lg"
+                        />
+                      )}
+                      <span className="text-sm text-gray-500">{review.tool.name}</span>
+                    </div>
+                  )}
+                  <h3 className="mt-3 font-semibold text-gray-900 group-hover:text-blue-600">
+                    {review.title}
+                  </h3>
+                  {review.ratings?.overall && (
+                    <div className="mt-2">
+                      <RatingStars rating={review.ratings.overall} size="sm" />
+                    </div>
+                  )}
+                  {review.excerpt && (
+                    <p className="mt-2 text-sm text-gray-600 line-clamp-2">{review.excerpt}</p>
                   )}
                 </Link>
               ))}

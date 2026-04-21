@@ -134,3 +134,54 @@ export const comparisonBySlugQuery = groq`
     publishedAt
   }
 `
+
+export const postsQuery = groq`
+  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    category->{_id, name, slug},
+    author->{_id, name, image},
+    featuredImage,
+    publishedAt
+  }
+`
+
+export const postBySlugQuery = groq`
+  *[_type == "post" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    body,
+    category->{_id, name, slug},
+    author->{_id, name, bio, image, social},
+    faq,
+    relatedTools[]->{_id, name, slug, logo, affiliateLink},
+    featuredImage,
+    publishedAt
+  }
+`
+
+export const categoryBySlugQuery = groq`
+  *[_type == "category" && slug.current == $slug][0] {
+    _id,
+    name,
+    slug,
+    description,
+    icon
+  }
+`
+
+export const latestReviewsQuery = groq`
+  *[_type == "review" && defined(slug.current)] | order(publishedAt desc)[0...3] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    tool->{_id, name, slug, logo},
+    ratings,
+    publishedAt
+  }
+`

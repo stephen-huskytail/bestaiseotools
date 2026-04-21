@@ -1,2 +1,7 @@
 export { Header } from './Header'
 export { Footer } from './Footer'
+export { AffiliateButton } from './AffiliateButton'
+export { RatingStars } from './RatingStars'
+export { PricingCard } from './PricingCard'
+export { ComparisonTable } from './ComparisonTable'
+export { FAQAccordion } from './FAQAccordion'
