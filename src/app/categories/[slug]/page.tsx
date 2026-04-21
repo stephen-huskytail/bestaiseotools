@@ -64,23 +64,23 @@ export default async function CategoryPage({ params }: Props) {
           </ol>
         </nav>
 
-        <header className="bg-gradient-to-r from-blue-600 to-blue-800 py-16">
+        <header className="bg-blue-700 py-8">
           <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <h1 className="text-4xl font-bold text-white">
+            <h1 className="text-2xl font-bold text-white">
               Best {category.name} Tools in {new Date().getFullYear()}
             </h1>
             {category.description && (
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
+              <p className="mx-auto mt-2 max-w-2xl text-sm text-blue-100">
                 {category.description}
               </p>
             )}
-            <p className="mt-6 text-blue-200">
+            <p className="mt-3 text-xs text-blue-200">
               {tools.length} tool{tools.length !== 1 ? 's' : ''} reviewed
             </p>
           </div>
         </header>
 
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           {tools.length > 0 ? (
             <div className="space-y-6">
               {tools.map((tool, index) => (

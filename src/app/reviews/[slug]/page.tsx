@@ -156,7 +156,7 @@ export default async function ReviewPage({ params }: Props) {
           </div>
         )}
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-3">
             <article className="lg:col-span-2">
               {tocItems.length > 3 && (
@@ -167,7 +167,7 @@ export default async function ReviewPage({ params }: Props) {
 
               {bodyHtml && (
                 <div
-                  className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
+                  className="prose max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
                   dangerouslySetInnerHTML={{ __html: bodyHtml }}
                 />
               )}

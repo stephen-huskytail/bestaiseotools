@@ -25,3 +25,23 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Ensure links in prose content are underlined for accessibility and editorial feel */
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Tighter paragraph spacing for editorial density */
+.prose p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.prose > *:first-child {
+  margin-top: 0;
+}
+
+.prose > *:last-child {
+  margin-bottom: 0;
+}

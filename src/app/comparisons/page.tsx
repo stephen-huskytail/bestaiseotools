@@ -29,18 +29,18 @@ export default async function ComparisonsPage({ searchParams }: Props) {
 
   return (
     <div className="bg-white">
-      <header className="bg-gradient-to-r from-blue-600 to-blue-800 py-16">
+      <header className="bg-blue-700 py-8">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white">Tool Comparisons</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
+          <h1 className="text-2xl font-bold text-white">Tool Comparisons</h1>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-blue-100">
             Side-by-side comparisons to help you find the best AI SEO tool for your needs.
           </p>
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {comparisons.length > 0 ? (
-          <div className="space-y-8">
+          <div className="space-y-6">
             {comparisons.map((comparison) => (
               <article
                 key={comparison.id}

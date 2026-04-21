@@ -30,18 +30,18 @@ export default async function BlogPage({ searchParams }: Props) {
 
   return (
     <div className="bg-white">
-      <header className="bg-gradient-to-r from-blue-600 to-blue-800 py-16">
+      <header className="bg-blue-700 py-8">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white">Blog</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
+          <h1 className="text-2xl font-bold text-white">Blog</h1>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-blue-100">
             Tips, guides, and insights to help you master AI-powered SEO.
           </p>
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {posts.length > 0 ? (
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <article
                 key={post.id}

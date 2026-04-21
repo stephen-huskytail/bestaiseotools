@@ -111,11 +111,11 @@ export default async function ToolPage({ params }: Props) {
           <p className="mt-6 text-lg text-gray-600">{tool.description}</p>
         </header>
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
               {tool.longDescription && (
-                <section className="prose prose-lg max-w-none">
+                <section className="prose max-w-none prose-a:underline">
                   <div dangerouslySetInnerHTML={{ __html: tool.longDescription.replace(/\n/g, '<br/>') }} />
                 </section>
               )}

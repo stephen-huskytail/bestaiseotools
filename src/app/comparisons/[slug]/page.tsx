@@ -132,7 +132,7 @@ export default async function ComparisonPage({ params }: Props) {
           </div>
         )}
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
           {comparison.tools && comparison.tools.length > 0 && (
             <section className="mb-12">
               <h2 className="mb-6 text-2xl font-bold text-gray-900">Quick Comparison</h2>
@@ -158,14 +158,14 @@ export default async function ComparisonPage({ params }: Props) {
           )}
 
           {comparison.winner && (
-            <section className="mb-12 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 p-8">
+            <section className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-6">
               <div className="flex flex-col items-center gap-4 sm:flex-row">
-                <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-blue-200 text-blue-700 text-2xl font-bold">
+                <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-blue-100 text-blue-700 text-xl font-bold">
                   {comparison.winner.name.charAt(0)}
                 </div>
                 <div className="text-center sm:text-left">
-                  <p className="text-sm font-medium uppercase tracking-wide text-blue-600">Our Pick</p>
-                  <h3 className="text-2xl font-bold text-gray-900">{comparison.winner.name}</h3>
+                  <p className="text-xs font-medium uppercase tracking-wide text-blue-600">Our Pick</p>
+                  <h3 className="text-xl font-bold text-gray-900">{comparison.winner.name}</h3>
                   {comparison.winnerReason && (
                     <p className="mt-2 text-gray-700">{comparison.winnerReason}</p>
                   )}
@@ -192,7 +192,7 @@ export default async function ComparisonPage({ params }: Props) {
 
           {bodyHtml && (
             <article
-              className="prose prose-lg mx-auto max-w-4xl prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
+              className="prose mx-auto max-w-4xl prose-headings:font-bold prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
               dangerouslySetInnerHTML={{ __html: bodyHtml }}
             />
           )}

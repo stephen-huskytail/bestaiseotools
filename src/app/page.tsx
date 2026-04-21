@@ -11,17 +11,17 @@ export default async function Home() {
 
   return (
     <div className="bg-white">
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Find the Best{' '}
             <span className="text-blue-600">AI SEO Tools</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600">
             Discover and compare the most powerful AI-driven SEO tools to boost your
             rankings, save time, and grow your organic traffic.
           </p>
-          <div className="mt-8 flex justify-center gap-4">
+          <div className="mt-6 flex justify-center gap-4">
             <Link
               href="/tools"
               className="rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500"
@@ -39,10 +39,10 @@ export default async function Home() {
       </section>
 
       {featuredTools.length > 0 && (
-        <section className="bg-gray-50 py-16">
+        <section className="bg-gray-50 py-10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900">Featured Tools</h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <h2 className="text-xl font-bold text-gray-900">Featured Tools</h2>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {featuredTools.map((tool) => (
                 <Link
                   key={tool.id}
@@ -81,10 +81,10 @@ export default async function Home() {
       )}
 
       {categories.length > 0 && (
-        <section className="py-16">
+        <section className="py-10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900">Browse by Category</h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <h2 className="text-xl font-bold text-gray-900">Browse by Category</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {categories.map((category) => (
                 <Link
                   key={category.id}
@@ -105,15 +105,15 @@ export default async function Home() {
       )}
 
       {latestReviews.length > 0 && (
-        <section className="py-16">
+        <section className="py-10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">Latest Reviews</h2>
-              <Link href="/reviews" className="text-sm font-medium text-blue-600 hover:underline">
+              <h2 className="text-xl font-bold text-gray-900">Latest Reviews</h2>
+              <Link href="/reviews" className="text-sm font-medium text-blue-600 underline hover:text-blue-800">
                 View all reviews →
               </Link>
             </div>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {latestReviews.map((review) => (
                 <Link
                   key={review.id}
@@ -147,7 +147,7 @@ export default async function Home() {
       )}
 
       {featuredTools.length === 0 && categories.length === 0 && (
-        <section className="py-16">
+        <section className="py-10">
           <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
             <p className="text-gray-500">
               Content coming soon. Add tools and categories in src/content/data/.

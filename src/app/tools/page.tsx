@@ -16,17 +16,17 @@ export default async function ToolsPage() {
 
   return (
     <div className="bg-white">
-      <header className="bg-gradient-to-r from-blue-600 to-blue-800 py-16">
+      <header className="bg-blue-700 py-8">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white">All AI SEO Tools</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
+          <h1 className="text-2xl font-bold text-white">All AI SEO Tools</h1>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-blue-100">
             Compare the best AI-powered SEO tools to boost your rankings and grow organic traffic.
           </p>
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-4">
           <aside className="space-y-6">
             <div>
               <h2 className="font-semibold text-gray-900">Categories</h2>

@@ -172,7 +172,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <div className="mx-auto max-w-4xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
           {tocItems.length > 3 && (
             <div className="mb-8">
               <TableOfContents items={tocItems} />
@@ -182,7 +182,7 @@ export default async function BlogPostPage({ params }: Props) {
           <article>
             {bodyHtml && (
               <div
-                className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
+                className="prose max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-50 prose-td:border prose-td:border-gray-300 prose-td:p-2"
                 dangerouslySetInnerHTML={{ __html: bodyHtml }}
               />
             )}
