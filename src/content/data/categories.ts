@@ -36,6 +36,20 @@ export const categories: Category[] = [
     description: 'Audit and optimize the technical aspects of your website.',
     order: 5,
   },
+  {
+    id: 'cat-content-optimization',
+    name: 'Content Optimization',
+    slug: 'content-optimization',
+    description: 'AI-powered tools to optimize content for search rankings and user engagement.',
+    order: 6,
+  },
+  {
+    id: 'cat-local-seo',
+    name: 'Local SEO',
+    slug: 'local-seo',
+    description: 'Tools for local search optimization and Google Business Profile management.',
+    order: 7,
+  },
 ]
 
 export function getCategoryById(id: string): Category | undefined {
