@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { RatingStars } from './RatingStars'
 import { AffiliateButton } from './AffiliateButton'
 import { trackEvent, ComparisonInteractionEvent } from '@/lib/analytics'
@@ -25,6 +25,8 @@ interface ComparisonTableProps {
   criteria?: Array<{
     criterion: string
     description?: string
+    winnerId?: string | 'tie'
+    values?: Record<string, string>
   }>
   winner?: Tool | null
   comparisonSlug?: string
@@ -122,21 +124,55 @@ export function ComparisonTable({
               </td>
             ))}
           </tr>
-          {criteria?.map((c, index) => (
-            <tr key={index}>
-              <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                <div>{c.criterion}</div>
-                {c.description && (
-                  <p className="text-xs text-gray-500 mt-1">{c.description}</p>
-                )}
-              </td>
-              {tools.map((tool) => (
-                <td key={tool._id} className="px-6 py-4 text-center text-sm text-gray-700">
-                  -
+          {criteria?.map((c, index) => {
+            const hasEmptyCell = tools.some((tool) => {
+              const value = c.values?.[tool._id]
+              return !value || value === '-' || value.trim() === ''
+            })
+
+            if (hasEmptyCell && process.env.NODE_ENV === 'development') {
+              console.warn(`[ComparisonTable] Empty cell in row "${c.criterion}"`)
+            }
+
+            return (
+              <tr key={index}>
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                  <div>{c.criterion}</div>
+                  {c.description && (
+                    <p className="text-xs text-gray-500 mt-1">{c.description}</p>
+                  )}
                 </td>
-              ))}
-            </tr>
-          ))}
+                {tools.map((tool) => {
+                  const value = c.values?.[tool._id]
+                  const isEmpty = !value || value === '-' || value.trim() === ''
+                  const isWinner = c.winnerId === tool._id
+                  const isTie = c.winnerId === 'tie'
+
+                  return (
+                    <td key={tool._id} className="px-6 py-4 text-center text-sm text-gray-700">
+                      <div className="flex flex-col items-center gap-1">
+                        {isEmpty ? (
+                          <span className="text-gray-300">—</span>
+                        ) : (
+                          <span>{value}</span>
+                        )}
+                        {isWinner && (
+                          <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
+                            Winner
+                          </span>
+                        )}
+                        {isTie && (
+                          <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+                            Tie
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                  )
+                })}
+              </tr>
+            )
+          })}
           <tr className="bg-gray-50">
             <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
               Try It
