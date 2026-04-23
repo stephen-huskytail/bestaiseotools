@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { getAllTools, getAllCategories } from '../../content'
-import { RatingStars, AffiliateButton } from '../../components'
+import { RatingStars, AffiliateButton, ToolLogo } from '../../components'
 
 export const revalidate = 3600
 
@@ -57,9 +57,7 @@ export default async function ToolsPage() {
                   className="group rounded-lg border border-gray-200 bg-white p-4 transition hover:border-blue-300 hover:shadow-md"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
-                      {tool.name.charAt(0)}
-                    </div>
+                    <ToolLogo name={tool.name} website={tool.website} size="md" />
                     <div className="flex-1">
                       <Link
                         href={`/tools/${tool.slug}`}

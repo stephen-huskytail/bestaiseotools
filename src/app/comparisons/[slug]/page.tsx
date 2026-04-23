@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 import { getComparisonBySlug, getAllComparisons, getRelatedComparisons } from '../../../content'
 import { markdownToHtml } from '../../../lib/markdown'
-import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons, StickyTableOfContents, RelatedComparisons, WinnerCalloutCompact, MidArticleCTA, FAQAccordion } from '../../../components'
+import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons, StickyTableOfContents, RelatedComparisons, WinnerCalloutCompact, MidArticleCTA, FAQAccordion, ToolLogo } from '../../../components'
 import { JsonLd, generateBreadcrumbJsonLd, generateFAQJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
 import { extractTocFromMarkdown } from '../../../lib/toc'
@@ -176,6 +176,7 @@ export default async function ComparisonPage({ params }: Props) {
                   _id: t.id,
                   name: t.name,
                   slug: { current: t.slug },
+                  website: t.website,
                   description: t.description,
                   rating: t.rating,
                   pricing: t.pricing,
@@ -195,9 +196,7 @@ export default async function ComparisonPage({ params }: Props) {
           {comparison.winner && (
             <section className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-6">
               <div className="flex flex-col items-center gap-4 sm:flex-row">
-                <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-blue-100 text-blue-700 text-xl font-bold">
-                  {comparison.winner.name.charAt(0)}
-                </div>
+                <ToolLogo name={comparison.winner.name} website={comparison.winner.website} size="lg" />
                 <div className="text-center sm:text-left">
                   <p className="text-xs font-medium uppercase tracking-wide text-blue-600">Our Pick</p>
                   <h3 className="text-xl font-bold text-gray-900">{comparison.winner.name}</h3>
@@ -280,9 +279,7 @@ export default async function ComparisonPage({ params }: Props) {
                   className="group rounded-lg border border-gray-200 p-4 transition hover:border-blue-300 hover:shadow-md"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
-                      {tool.name.charAt(0)}
-                    </div>
+                    <ToolLogo name={tool.name} website={tool.website} size="md" />
                     <div>
                       <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">
                         {tool.name}

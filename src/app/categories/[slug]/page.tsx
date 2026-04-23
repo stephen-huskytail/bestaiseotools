@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { getCategoryBySlug, getAllCategories, getToolsByCategory } from '../../../content'
-import { RatingStars, AffiliateButton } from '../../../components'
+import { RatingStars, AffiliateButton, ToolLogo } from '../../../components'
 import { JsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
 
 export const revalidate = 3600
@@ -98,9 +98,7 @@ export default async function CategoryPage({ params }: Props) {
                   </div>
 
                   <div className="flex flex-1 items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-100 text-blue-600 text-xl font-bold">
-                      {tool.name.charAt(0)}
-                    </div>
+                    <ToolLogo name={tool.name} website={tool.website} size="xl" />
                     <div className="flex-1">
                       <Link
                         href={`/tools/${tool.slug}`}

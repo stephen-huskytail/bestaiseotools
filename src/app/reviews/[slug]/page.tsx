@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 import { getReviewBySlug, getAllReviews, getRelatedReviews } from '../../../content'
 import { markdownToHtml } from '../../../lib/markdown'
-import { AffiliateButton, RatingStars, AuthorBio, ShareButtons, TableOfContents, RelatedReviews } from '../../../components'
+import { AffiliateButton, RatingStars, AuthorBio, ShareButtons, TableOfContents, RelatedReviews, ToolLogo } from '../../../components'
 import { JsonLd, generateReviewJsonLd, generateBreadcrumbJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
 import { extractTocFromMarkdown } from '../../../lib/toc'
@@ -197,9 +197,7 @@ export default async function ReviewPage({ params }: Props) {
             <aside className="space-y-6">
               <div className="rounded-lg border border-gray-200 bg-white p-6">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-blue-100 text-blue-600 text-xl font-bold">
-                    {review.tool.name.charAt(0)}
-                  </div>
+                  <ToolLogo name={review.tool.name} website={review.tool.website} size="lg" />
                   <div>
                     <h3 className="font-semibold text-gray-900">{review.tool.name}</h3>
                     {review.ratings?.overall && (

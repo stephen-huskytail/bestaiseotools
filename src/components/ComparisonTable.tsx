@@ -3,6 +3,7 @@
 import { useCallback, useEffect } from 'react'
 import { RatingStars } from './RatingStars'
 import { AffiliateButton } from './AffiliateButton'
+import { ToolLogo } from './ToolLogo'
 import { trackEvent, ComparisonInteractionEvent } from '@/lib/analytics'
 
 interface Tool {
@@ -10,6 +11,7 @@ interface Tool {
   name: string
   slug: { current: string }
   logo?: string
+  website?: string
   description?: string
   rating?: number
   pricing?: {
@@ -67,9 +69,7 @@ export function ComparisonTable({
             {tools.map((tool) => (
               <th key={tool._id} scope="col" className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-500">
                 <div className="flex flex-col items-center gap-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
-                    {tool.name.charAt(0)}
-                  </div>
+                  <ToolLogo name={tool.name} logo={tool.logo} website={tool.website} size="sm" />
                   <span className={winner?._id === tool._id ? 'text-blue-600 font-semibold' : ''}>
                     {tool.name}
                     {winner?._id === tool._id && (

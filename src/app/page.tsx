@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { getFeaturedTools, getAllCategories, getLatestReviews } from '../content'
-import { RatingStars } from '../components'
+import { RatingStars, ToolLogo } from '../components'
 
 export const revalidate = 3600
 
@@ -50,9 +50,7 @@ export default async function Home() {
                   className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 font-bold">
-                      {tool.name.charAt(0)}
-                    </div>
+                    <ToolLogo name={tool.name} website={tool.website} size="md" />
                     <div>
                       <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">
                         {tool.name}
@@ -122,9 +120,7 @@ export default async function Home() {
                 >
                   {review.tool && (
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 text-gray-600 font-bold text-sm">
-                        {review.tool.name.charAt(0)}
-                      </div>
+                      <ToolLogo name={review.tool.name} website={review.tool.website} size="sm" />
                       <span className="text-sm text-gray-500">{review.tool.name}</span>
                     </div>
                   )}
