@@ -610,7 +610,7 @@ At $99/month (Standard), it's not cheap. But if you're producing 5+ optimized ar
     },
     verdict: 'Surfer SEO is the best content optimization tool for serious creators. Eight months of testing showed 78% of optimized articles improved rankings. At $99/month, it pays for itself if you publish 5+ articles monthly.',
     publishedAt: '2026-04-21',
-    updatedAt: '2026-04-21',
+    updatedAt: '2026-04-22',
   },
   {
     id: 'review-ahrefs',
