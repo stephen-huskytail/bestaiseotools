@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
@@ -31,13 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-white">
-        <Suspense fallback={null}>
-          <PostHogProvider>
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </PostHogProvider>
-        </Suspense>
+        <PostHogProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </PostHogProvider>
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
