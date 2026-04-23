@@ -18,6 +18,21 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  openGraph: {
+    title: "Smart SEO Tools - Discover the Top AI-Powered SEO Tools",
+    description:
+      "Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.",
+    url: SITE_URL,
+    siteName: "Smart SEO Tools",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Smart SEO Tools - Discover the Top AI-Powered SEO Tools",
+    description:
+      "Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.",
+  },
 };
 
 export default function RootLayout({
