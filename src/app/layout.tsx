@@ -26,12 +26,14 @@ export const metadata: Metadata = {
     siteName: "Smart SEO Tools",
     locale: "en_US",
     type: "website",
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "Smart SEO Tools" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Smart SEO Tools - Discover the Top AI-Powered SEO Tools",
     description:
       "Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.",
+    images: [`${SITE_URL}/opengraph-image`],
   },
 };
 

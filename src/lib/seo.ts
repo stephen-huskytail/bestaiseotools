@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
 const SITE_NAME = 'Smart SEO Tools'
+const DEFAULT_OG_IMAGE = `${SITE_URL}/opengraph-image`
 
 interface SeoConfig {
   title: string
@@ -50,15 +51,14 @@ export function generateMetadata({
     },
   }
 
-  if (ogImage) {
-    metadata.openGraph = {
-      ...metadata.openGraph,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
-    }
-    metadata.twitter = {
-      ...metadata.twitter,
-      images: [ogImage],
-    }
+  const imageUrl = ogImage || DEFAULT_OG_IMAGE
+  metadata.openGraph = {
+    ...metadata.openGraph,
+    images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
+  }
+  metadata.twitter = {
+    ...metadata.twitter,
+    images: [imageUrl],
   }
 
   if (article) {
