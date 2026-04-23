@@ -11,6 +11,9 @@ const REVIEWS_PER_PAGE = 9
 export const metadata: Metadata = {
   title: 'Tool Reviews - Smart SEO Tools',
   description: 'In-depth reviews of the best AI SEO tools to help you make informed decisions.',
+  alternates: {
+    canonical: '/reviews',
+  },
 }
 
 interface Props {

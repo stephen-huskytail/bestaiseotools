@@ -11,6 +11,9 @@ const COMPARISONS_PER_PAGE = 6
 export const metadata: Metadata = {
   title: 'Tool Comparisons - Smart SEO Tools',
   description: 'Side-by-side comparisons of popular AI SEO tools to help you choose the best option.',
+  alternates: {
+    canonical: '/comparisons',
+  },
 }
 
 interface Props {

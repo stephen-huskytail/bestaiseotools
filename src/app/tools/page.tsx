@@ -8,6 +8,9 @@ export const revalidate = 3600
 export const metadata: Metadata = {
   title: 'All AI SEO Tools - Smart SEO Tools',
   description: 'Browse and compare all AI-powered SEO tools to find the perfect solution for your needs.',
+  alternates: {
+    canonical: '/tools',
+  },
 }
 
 export default async function ToolsPage() {

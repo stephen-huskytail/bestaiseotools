@@ -24,6 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Best ${category.name} Tools - Smart SEO Tools`,
     description: category.description || `Discover the best ${category.name} tools for your SEO needs.`,
+    alternates: {
+      canonical: `/categories/${slug}`,
+    },
     openGraph: {
       title: `Best ${category.name} Tools`,
       description: category.description,

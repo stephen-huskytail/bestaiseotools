@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${review.title} - Smart SEO Tools`,
     description: review.excerpt,
+    alternates: {
+      canonical: `/reviews/${slug}`,
+    },
     openGraph: {
       title: review.title,
       description: review.excerpt,
