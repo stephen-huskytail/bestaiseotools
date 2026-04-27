@@ -44,7 +44,7 @@ export default async function CategoryPage({ params }: Props) {
   }
 
   const tools = getToolsByCategory(category.id)
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.smartseotools.ai'
 
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },

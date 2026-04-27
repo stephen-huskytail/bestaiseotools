@@ -61,7 +61,7 @@ export default async function BlogPostPage({ params }: Props) {
     notFound()
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.smartseotools.ai'
   const postUrl = `${siteUrl}/blog/${post.slug}`
   const readingTime = calculateReadingTime(post.body || '')
   const tocItems = extractTocFromMarkdown(post.body || '')

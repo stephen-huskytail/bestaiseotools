@@ -49,7 +49,7 @@ export default async function ComparisonPage({ params }: Props) {
     notFound()
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.smartseotools.ai'
   const comparisonUrl = `${siteUrl}/comparisons/${comparison.slug}`
   const readingTime = calculateReadingTime(comparison.body || '')
   const tocItems = extractTocFromMarkdown(comparison.body || '')

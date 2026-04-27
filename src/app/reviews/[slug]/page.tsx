@@ -48,7 +48,7 @@ export default async function ReviewPage({ params }: Props) {
     notFound()
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://smartseotools.ai'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.smartseotools.ai'
   const reviewUrl = `${siteUrl}/reviews/${review.slug}`
   const readingTime = calculateReadingTime(review.body || '')
   const tocItems = extractTocFromMarkdown(review.body || '')
