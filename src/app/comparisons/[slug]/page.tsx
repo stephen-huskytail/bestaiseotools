@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 import { getComparisonBySlug, getAllComparisons, getRelatedComparisons } from '../../../content'
 import { markdownToHtml } from '../../../lib/markdown'
-import { ComparisonTable, AffiliateButton, AuthorBio, ShareButtons, StickyTableOfContents, RelatedComparisons, WinnerCalloutCompact, MidArticleCTA, FAQAccordion, ToolLogo } from '../../../components'
-import { JsonLd, generateBreadcrumbJsonLd, generateFAQJsonLd } from '../../../lib/jsonld'
+import { ComparisonTable, AffiliateButton, AffiliateDisclosure, AuthorBio, ShareButtons, StickyTableOfContents, RelatedComparisons, WinnerCalloutCompact, MidArticleCTA, FAQAccordion, ToolLogo } from '../../../components'
+import { JsonLd, generateBreadcrumbJsonLd, generateFAQJsonLd, generateArticleJsonLd, generateProductJsonLd } from '../../../lib/jsonld'
 import { calculateReadingTime } from '../../../lib/reading-time'
 import { extractTocFromMarkdown } from '../../../lib/toc'
 import { extractFaqsFromMarkdown, countWords } from '../../../lib/faq'
@@ -72,9 +72,45 @@ export default async function ComparisonPage({ params }: Props) {
 
   const faqJsonLd = faqs.length > 0 ? generateFAQJsonLd({ items: faqs }) : null
 
+  const articleJsonLd = generateArticleJsonLd({
+    headline: comparison.title,
+    description: comparison.excerpt,
+    image: comparison.featuredImage,
+    datePublished: comparison.publishedAt,
+    dateModified: comparison.updatedAt || comparison.publishedAt,
+    author: {
+      name: comparison.author?.name || 'Smart SEO Tools',
+      url: comparison.author?.social?.website,
+    },
+    publisher: {
+      name: 'Smart SEO Tools',
+      logo: `${siteUrl}/logo.png`,
+    },
+  })
+
+  const toolsJsonLd = comparison.tools?.map((tool) =>
+    generateProductJsonLd({
+      name: tool.name,
+      description: tool.description || `${tool.name} - SEO and content optimization tool`,
+      image: tool.logo,
+      url: tool.website,
+      brand: tool.name,
+      aggregateRating: tool.rating
+        ? { ratingValue: tool.rating, reviewCount: 1 }
+        : undefined,
+      offers: tool.pricing
+        ? { price: 0, priceCurrency: 'USD', availability: 'InStock' }
+        : undefined,
+    })
+  ) || []
+
   return (
     <>
       <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={articleJsonLd} />
+      {toolsJsonLd.map((toolJsonLd, index) => (
+        <JsonLd key={index} data={toolJsonLd} />
+      ))}
       {faqJsonLd && <JsonLd data={faqJsonLd} />}
 
       <div className="bg-white">
@@ -131,6 +167,10 @@ export default async function ComparisonPage({ params }: Props) {
             <ShareButtons url={comparisonUrl} title={comparison.title} />
           </div>
         </header>
+
+        <div className="mx-auto max-w-7xl px-4 pb-4 sm:px-6 lg:px-8">
+          <AffiliateDisclosure />
+        </div>
 
         {comparison.winner && (
           <div className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
