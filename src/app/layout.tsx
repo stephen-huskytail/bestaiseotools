@@ -12,25 +12,25 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.smartseotools.
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Smart SEO Tools - Discover the Top AI-Powered SEO Tools",
+  title: "SmartSEOTools.ai - Discover the Top AI-Powered SEO Tools",
   description:
     "Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.",
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Smart SEO Tools - Discover the Top AI-Powered SEO Tools",
+    title: "SmartSEOTools.ai - Discover the Top AI-Powered SEO Tools",
     description:
       "Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.",
     url: SITE_URL,
-    siteName: "Smart SEO Tools",
+    siteName: "SmartSEOTools.ai",
     locale: "en_US",
     type: "website",
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "Smart SEO Tools" }],
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "SmartSEOTools.ai" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Smart SEO Tools - Discover the Top AI-Powered SEO Tools",
+    title: "SmartSEOTools.ai - Discover the Top AI-Powered SEO Tools",
     description:
       "Your trusted source for discovering and comparing the best AI-powered SEO tools to boost your search rankings and grow your business.",
     images: [`${SITE_URL}/opengraph-image`],

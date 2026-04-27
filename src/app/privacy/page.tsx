@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - Smart SEO Tools',
-  description: 'Learn how Smart SEO Tools collects, uses, and protects your personal information.',
+  title: 'Privacy Policy - SmartSEOTools.ai',
+  description: 'Learn how SmartSEOTools.ai collects, uses, and protects your personal information.',
 }
 
 export default function PrivacyPage() {
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
 
       <div className="mt-8 space-y-6 text-gray-600">
         <p>
-          This Privacy Policy describes how Smart SEO Tools ("we", "us", or "our") collects,
+          This Privacy Policy describes how SmartSEOTools.ai ("we", "us", or "our") collects,
           uses, and shares information when you visit our website.
         </p>
 

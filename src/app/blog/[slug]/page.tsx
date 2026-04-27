@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {}
 
   return {
-    title: `${post.title} - Smart SEO Tools`,
+    title: `${post.title} - SmartSEOTools.ai`,
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${slug}`,
@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: Props) {
       name: post.author?.name || 'SmartSEOTools Team',
     },
     publisher: {
-      name: 'Smart SEO Tools',
+      name: 'SmartSEOTools.ai',
       logo: `${siteUrl}/logo.png`,
     },
   })

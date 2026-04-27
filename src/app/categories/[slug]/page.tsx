@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!category) return {}
 
   return {
-    title: `Best ${category.name} Tools - Smart SEO Tools`,
+    title: `Best ${category.name} Tools - SmartSEOTools.ai`,
     description: category.description || `Discover the best ${category.name} tools for your SEO needs.`,
     alternates: {
       canonical: `/categories/${slug}`,

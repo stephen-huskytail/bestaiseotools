@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!comparison) return {}
 
   return {
-    title: `${comparison.title} - Smart SEO Tools`,
+    title: `${comparison.title} - SmartSEOTools.ai`,
     description: comparison.excerpt,
     alternates: {
       canonical: `/comparisons/${slug}`,
@@ -79,11 +79,11 @@ export default async function ComparisonPage({ params }: Props) {
     datePublished: comparison.publishedAt,
     dateModified: comparison.updatedAt || comparison.publishedAt,
     author: {
-      name: comparison.author?.name || 'Smart SEO Tools',
+      name: comparison.author?.name || 'SmartSEOTools.ai',
       url: comparison.author?.social?.website,
     },
     publisher: {
-      name: 'Smart SEO Tools',
+      name: 'SmartSEOTools.ai',
       logo: `${siteUrl}/logo.png`,
     },
   })

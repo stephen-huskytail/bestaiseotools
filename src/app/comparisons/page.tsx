@@ -9,7 +9,7 @@ export const revalidate = 3600
 const COMPARISONS_PER_PAGE = 6
 
 export const metadata: Metadata = {
-  title: 'Tool Comparisons - Smart SEO Tools',
+  title: 'Tool Comparisons - SmartSEOTools.ai',
   description: 'Side-by-side comparisons of popular AI SEO tools to help you choose the best option.',
   alternates: {
     canonical: '/comparisons',

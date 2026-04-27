@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.smartseotools.ai'
-const SITE_NAME = 'Smart SEO Tools'
+const SITE_NAME = 'SmartSEOTools.ai'
 const DEFAULT_OG_IMAGE = `${SITE_URL}/opengraph-image`
 
 interface SeoConfig {
@@ -144,7 +144,7 @@ export function generateBlogMetadata(post: {
 }): Metadata {
   return generateMetadata({
     title: post.title,
-    description: post.excerpt || `Read about ${post.title} on Smart SEO Tools blog.`,
+    description: post.excerpt || `Read about ${post.title} on SmartSEOTools.ai blog.`,
     path: `/blog/${post.slug}`,
     ogImage: post.featuredImage,
     article: {

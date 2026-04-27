@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Smart SEO Tools',
-  description: 'Get in touch with the Smart SEO Tools team. We welcome your questions, feedback, and partnership inquiries.',
+  title: 'Contact Us - SmartSEOTools.ai',
+  description: 'Get in touch with the SmartSEOTools.ai team. We welcome your questions, feedback, and partnership inquiries.',
 }
 
 export default function ContactPage() {

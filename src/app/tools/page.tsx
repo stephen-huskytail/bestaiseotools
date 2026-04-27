@@ -6,7 +6,7 @@ import { RatingStars, AffiliateButton, ToolLogo } from '../../components'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'All AI SEO Tools - Smart SEO Tools',
+  title: 'All AI SEO Tools - SmartSEOTools.ai',
   description: 'Browse and compare all AI-powered SEO tools to find the perfect solution for your needs.',
   alternates: {
     canonical: '/tools',

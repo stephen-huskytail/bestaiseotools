@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Smart SEO Tools - AI-Powered SEO Tool Reviews and Comparisons'
+export const alt = 'SmartSEOTools.ai - AI-Powered SEO Tool Reviews and Comparisons'
 export const size = {
   width: 1200,
   height: 630,
@@ -57,7 +57,7 @@ export default function Image() {
             marginBottom: '24px',
           }}
         >
-          Smart SEO Tools
+          SmartSEOTools.ai
         </div>
         <div
           style={{

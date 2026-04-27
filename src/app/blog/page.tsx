@@ -10,7 +10,7 @@ export const revalidate = 3600
 const POSTS_PER_PAGE = 9
 
 export const metadata: Metadata = {
-  title: 'Blog - Smart SEO Tools',
+  title: 'Blog - SmartSEOTools.ai',
   description: 'Tips, guides, and insights about AI-powered SEO tools and strategies.',
   alternates: {
     canonical: '/blog',

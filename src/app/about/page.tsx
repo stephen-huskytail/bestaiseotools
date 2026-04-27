@@ -1,20 +1,20 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About Us - Smart SEO Tools',
-  description: 'Learn about Smart SEO Tools and our mission to help businesses find the best AI-powered SEO tools.',
+  title: 'About Us - SmartSEOTools.ai',
+  description: 'Learn about SmartSEOTools.ai and our mission to help businesses find the best AI-powered SEO tools.',
 }
 
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        About Smart SEO Tools
+        About SmartSEOTools.ai
       </h1>
 
       <div className="mt-8 space-y-6 text-gray-600">
         <p>
-          Smart SEO Tools is your trusted resource for discovering, comparing, and evaluating
+          SmartSEOTools.ai is your trusted resource for discovering, comparing, and evaluating
           the best AI-powered SEO tools on the market. We help digital marketers, SEO professionals,
           and business owners make informed decisions about the tools they use to grow their online presence.
         </p>

@@ -9,7 +9,7 @@ export const revalidate = 3600
 const REVIEWS_PER_PAGE = 9
 
 export const metadata: Metadata = {
-  title: 'Tool Reviews - Smart SEO Tools',
+  title: 'Tool Reviews - SmartSEOTools.ai',
   description: 'In-depth reviews of the best AI SEO tools to help you make informed decisions.',
   alternates: {
     canonical: '/reviews',

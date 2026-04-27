@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!review) return {}
 
   return {
-    title: `${review.title} - Smart SEO Tools`,
+    title: `${review.title} - SmartSEOTools.ai`,
     description: review.excerpt,
     alternates: {
       canonical: `/reviews/${slug}`,
