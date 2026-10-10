@@ -15,7 +15,7 @@ export default function PrivacyPage() {
 
       <div className="mt-8 space-y-6 text-gray-600">
         <p>
-          This Privacy Policy describes how SmartSEOTools.ai ("we", "us", or "our") collects,
+          This Privacy Policy describes how SmartSEOTools.ai (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects,
           uses, and shares information when you visit our website.
         </p>
 
