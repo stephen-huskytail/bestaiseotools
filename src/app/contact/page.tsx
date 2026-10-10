@@ -14,7 +14,7 @@ export default function ContactPage() {
 
       <div className="mt-8 space-y-6 text-gray-600">
         <p>
-          We'd love to hear from you! Whether you have questions about our reviews,
+          We&apos;d love to hear from you! Whether you have questions about our reviews,
           suggestions for tools to cover, or partnership inquiries, reach out anytime.
         </p>
 
@@ -37,7 +37,7 @@ export default function ContactPage() {
           <div>
             <h3 className="font-medium text-gray-900">Tool Reviews</h3>
             <p className="text-sm">
-              Want us to review a specific AI SEO tool? Let us know which tools you'd like to see covered.
+              Want us to review a specific AI SEO tool? Let us know which tools you&apos;d like to see covered.
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export default function ContactPage() {
           <div>
             <h3 className="font-medium text-gray-900">Partnerships</h3>
             <p className="text-sm">
-              We're open to discussing partnerships with SEO tool providers. Please include details about your product in your message.
+              We&apos;re open to discussing partnerships with SEO tool providers. Please include details about your product in your message.
             </p>
           </div>
         </div>
